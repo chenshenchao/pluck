@@ -7,9 +7,9 @@
 
 // Facade 绑定
 think\Facade::bind([
-    pluck\facade\Crypt::class => pluck\Crypt::class,
-    pluck\facade\Path::class => pluck\Path::class,
-    pluck\facade\Sql::class => pluck\Sql::class,
+    pluck\facade\Crypt::class => pluck\utility\Crypt::class,
+    pluck\facade\Path::class => pluck\utility\Path::class,
+    pluck\facade\Sql::class => pluck\utility\Sql::class,
 ]);
 
 // 添加类别名

@@ -1,4 +1,4 @@
-<?php namespace pluck;
+<?php namespace pluck\utility;
 
 /**
  * 密码
