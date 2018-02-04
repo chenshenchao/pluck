@@ -1,4 +1,5 @@
 # [Pluck](https://github.com/chenshenchao/pluck)
+![Logo](logo.png)
 
 # 概述
 
