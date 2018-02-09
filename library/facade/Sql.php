@@ -12,10 +12,9 @@ final class Sql extends Facade {
     /**
      * 执行 SQL 文件。
      * 
-     * @param string $name: 文件名。
+     * @param string $path: 文件名。
      */
-    public static function execute($name, $data=null) {
-        $path = Path::of('sql', $name.'sql');
+    public static function execute($path, $data=null) {
         $text = file_get_contents($path);
         $code = preg_replace('/--.*?\n/', '', $text);
         // 文本替换

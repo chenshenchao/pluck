@@ -10,15 +10,20 @@ final class Path {
 
     /**
      * 初始化默认路径。
-     * - here 服务器根目录（即 TP5 的 index.php 目录）
+     * - public 服务器根目录（即 TP5 的 index.php 目录）
      * - root 项目根目录（即 TP5 项目的目录）
      */
     public function __construct() {
-        $here = realpath(null);
-        $root = dirname($here);
+        $public = realpath(null);
+        $root = dirname($public);
         $this->reservation = [
-            'here' => $here,
             'root' => $root,
+            'public' => $public,
+            'config' => $root.\Path::DS.'config',
+            'extend' => $root.\Path::DS.'extend',
+            'runtime' => $root.\Path::DS.'runtime',
+            'route' => $root.\Path::DS.'route',
+            'application' => $root.\Path::DS.'application',
         ];
     }
 

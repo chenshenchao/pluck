@@ -1,0 +1,44 @@
+-- 管理员
+CREATE TABLE __PREFIX__administrator(
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `priority` BIGINT NOT NULL DEFAULT 7,
+    `name` VARCHAR(31) NOT NULL,
+    `account` VARCHAR(31) NOT NULL UNIQUE,
+    `password` BINARY(16) NOT NULL,
+    `signdate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `logintime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+-- 文章
+CREATE TABLE __PREFIX__archive(
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `title` VARCHAR(127) NOT NULL,
+    `content` LONGTEXT NOT NULL,
+    `status` ENUM("private", "public") NOT NULL DEFAULT "public",
+    `createdate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+-- 关键字
+CREATE TABLE __PREFIX__keyword(
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `value` VARCHAR(63) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+-- 归类
+CREATE TABLE __PREFIX__category(
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `keywordid` BIGINT UNSIGNED NOT NULL,
+    `archiveid` BIGINT UNSIGNED NOT NULL,
+    PRIMARY KEY (id)
+);
+
+-- 版权
+CREATE TABLE __PREFIX__copyright(
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `authorid` BIGINT UNSIGNED NOT NULL,
+    `archiveid` BIGINT UNSIGNED NOT NULL,
+    PRIMARY KEY (id)
+);

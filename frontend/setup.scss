@@ -1,0 +1,11 @@
+@import "~bootstrap/scss/bootstrap";
+
+body {
+    margin: 0;
+    padding: 0;
+
+    & > header {
+        background: #221a22;
+        text-align: center;
+    }
+}

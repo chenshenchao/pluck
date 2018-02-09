@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+        <link rel="shortcut icon" type="image/x-icon" href="{:base64_image(pathof('pluck', 'logo.ico'))}"/>
+        {if !$Think.env.app_debug}
+        <link rel="stylesheet" type="text/css" charset="utf-8" href="/styles/login.min.css"/>
+        {/if}
+        <title>{:lang($title ?? 'Pluck')}</title>
+        {if $Think.env.app_debug}
+        {:inline_style(pathof('pluck', 'asset', 'styles', 'login.min.css'))}
+        {/if}
+    </head>
+    <body>
+        <header class="banner">
+            <img alt="logo" src="{:base64_image(pathof('pluck', 'logo.png'))}"/>
+        </header>
+        <section class="content">
+            <form class="ajax" method="post" action="{:pluck_link('checkin')}" data-key="/public.key">
+                <div class="field">
+                    <div class="edit">
+                        <input name="username" type="text" placeholder="{:lang('Username')}" required/>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="edit">
+                        <input name="password" type="password" placeholder="{:lang('Password')}" required/>
+                    </div>
+                </div>
+                <div class="field">
+                    <img alt="captcha" src="{:captcha_src()}"/>
+                    <div class="edit">
+                        <input name="captcha" type="text" placeholder="{:lang('Captcha')}" required/>
+                    </div>
+                </div>
+                <p class="tip"></p>
+                <button type="submit">{:lang('Submit')}</button>
+            </form>
+        </section>
+        {if $Think.env.app_debug}
+        {:inline_script(pathof('pluck', 'asset', 'scripts', 'login.min.js'))}
+        {else/}
+        <script type="text/javascript" charset="utf-8" src="/scripts/login.min.js"></script>
+        {/if}
+    </body>
+</html>

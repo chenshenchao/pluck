@@ -1,0 +1,46 @@
+.banner {
+    background-color: #313737;
+    text-align: center;
+}
+
+form.ajax {
+    margin: 2rem auto;
+    max-width: 20rem;
+
+    .field {
+        border: 1px solid #777;
+        border-radius: .5rem;
+        margin: 0.5rem auto;
+        padding: 0.5rem;
+        overflow: hidden;
+
+        input {
+            width: 100%;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            border-bottom: 1px solid black;
+            box-sizing: border-box;
+            font-size: 1.25rem;
+        }
+        img[alt=captcha] {
+            width: 50%;
+            float: left;
+            height: 3rem;
+
+            + .edit {
+                width: 40%;
+                float: right;
+                height: 3rem;
+
+                & > input {
+                    height: 3rem;
+                }
+            }
+        }
+    }
+
+    button {
+        width: 100%;
+    }
+}

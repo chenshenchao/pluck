@@ -1,0 +1,58 @@
+{extend name="setup/step"/}
+
+{block name="content"}
+<section class="container">
+    <form class="ajax" method="post" action="/install">
+        <label class="text-primary font-weight-bold row">{:lang('Database')}</label>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">{:lang('Name')}</label>
+            <input name="database" type="text" class="form-control col-5" placeholder="{:lang('Name')}" required/>
+            <label class="col-2 col-form-label">{:lang('Type')}</label>
+            <input name="type" type="text" class="form-control col-3" placeholder="{:lang('Type')}" value="mysql" required/>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">{:lang('Host')}</label>
+            <input name="hostname" type="text" class="form-control col-5" placeholder="{:lang('Host')}" value="127.0.0.1" required/>
+            <label class="col-2 col-form-label">{:lang('Port')}</label>
+            <input name="hostport" type="text" class="form-control col-3" placeholder="{:lang('Port')}" value="3306" required/>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">{:lang('Username')}</label>
+            <input name="username" type="text" class="form-control col-4" placeholder="{:lang('Username')}" required/>
+            <label class="col-2 col-form-label">{:lang('Password')}</label>
+            <input name="password" type="text" class="form-control col-4" placeholder="{:lang('Password')}" required/>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">{:lang('Prefix')}</label>
+            <input name="prefix" type="text" class="form-control col-4" placeholder="{:lang('Prefix')}" required/>
+            <label class="col-2 col-form-label">{:lang('Charset')}</label>
+            <input name="charset" type="text" class="form-control col-4" placeholder="{:lang('Charset')}" value="utf8" required/>
+        </div>
+        <label class="text-primary font-weight-bold row">{:lang('Administrator')}</label>
+        <div class="form-group row">
+            <label class="col-2 col-form-label mr-auto">{:lang('Link')}</label>
+            <input name="link" type="text" class="form-control col" placeholder="{:lang('Link')}" required/>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">{:lang('Account')}</label>
+            <input name="account" type="text" class="form-control col" placeholder="{:lang('Account')}" required/>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">{:lang('Password')}</label>
+            <input name="cipher" type="password" class="form-control col" placeholder="{:lang('Password')}" required/>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">{:lang('Confirm')}</label>
+            <input name="confirm" type="password" class="form-control col" placeholder="{:lang('Confirm')}" required/>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">{:lang('Tip')}</label>
+            <span class="col-8 form-text tip"></span>
+            <button class="btn btn-primary col-2">{:lang('Submit')}</button>
+        </div>
+    </form>
+    <div class="d-none">
+        <a href="/">{:lang('Home')}</a>
+    </div>
+</section>
+{/block}

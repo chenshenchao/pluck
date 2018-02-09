@@ -1,10 +1,11 @@
 # [Pluck](https://github.com/chenshenchao/pluck)
+
 ![Logo](logo.png)
 
-# 概述
-
-Pluck 是一个对 ThinkPHP 做扩展的 PHP 库，添加了一些 ThinkPHP 未支持的功能。
+Pluck 是一个基于 ThinkPHP 的内容管理框架。
 
 # 依赖
 - php ^7.2
+- composer
 - topthink/framework ^5.1
+- topthink/think-captcha ^2.0
