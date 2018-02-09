@@ -1,0 +1,38 @@
+.sidebar {
+    width: 15rem;
+    position: absolute;
+    top: 3.5rem;
+    bottom: 0;
+    overflow-y: auto;
+
+    & > .navbar {
+        padding: 0;
+
+        & > nav {
+            width: 100%;
+            font-weight: 700;
+            text-indent: 1.5em;
+            & > a.nav-link.active {
+                background-color: rgba(0, 37, 100, 0.5);
+            }
+
+            & > nav {
+                font-weight: lighter;
+                text-indent: 3em;
+            }
+        }
+
+        a.nav-link {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: block;
+            line-height: 2rem;
+
+            &.active {
+                color: white;
+                background-color: rgba(37, 0, 117, 0.5);
+            }
+        }
+    }
+}

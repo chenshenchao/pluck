@@ -1,5 +1,7 @@
 <?php namespace pluck\controller;
 
+use pluck\facade\Sidebar;
+
 /**
  * 后台页面
  * 
@@ -11,10 +13,11 @@ final class Index extends Basic {
      */
     public function index() {
         session('?admin') or abort(404);
-        return $this->fetch('layout');
+        return $this->fetch('index/index');
     }
 
     /**
+     * 登入页面。
      * 
      */
     public function login() {
@@ -23,11 +26,12 @@ final class Index extends Basic {
     }
 
     /**
+     * 登出。
      * 
      */
     public function logout() {
         session('?admin') or abort(404);
         session('admin', null);
-        return $this->fetch('logout');
+        return $this->redirect('/');
     }
 }

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>{block name="initial"}{/block}
 <html>
     <head>
         <meta charset="utf-8"/>
@@ -17,7 +17,7 @@
             <nav class="navbar">
                 <a class="navbar-brand" href="{:pluck_link()}">
                     <img alt="icon" src="{:base64_image(pathof('pluck', 'logo.ico'))}"/>
-                    <span class="text">PluckCMF</span>
+                    <span class="text">Pluck</span>
                 </a>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
@@ -31,12 +31,26 @@
                 </ul>
             </nav>
         </header>
-        <section class="content">
-
+        <section class="sidebar bg-light">
+            <nav class="navbar">
+                <nav class="nav flex-column">
+                    {volist name=":Sidebar::getItems()" id="item"}
+                    <a class="nav-link{$item.active ? ' active' : ''}" href="{$item.link}">{:lang($item.text)}</a>
+                    {notempty name="$item.children"}
+                    <nav class="nav flex-column">
+                        {volist name="$item.children" id="child"}
+                        <a class="nav-link{$child.active ? ' active' : ''}" href="{$child.link}">{:lang($child.text)}</a>
+                        {/volist}
+                    </nav>
+                    {/notempty}
+                    {/volist}
+                </nav>
+            </nav>
         </section>
-        <footer class="bg-secondray">
-
-        </footer>
+        {block name="mainpane"}
+        <section class="mainpane">
+        </section>
+        {/block}
         {if $Think.env.app_debug}
         {:inline_script(pathof('pluck', 'asset', 'scripts', 'pluck.min.js'))}
         {else/}
