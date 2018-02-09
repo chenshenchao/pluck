@@ -3,6 +3,7 @@
 use pluck\Controller;
 use pluck\facade\Path;
 use pluck\facade\Crypt;
+use pluck\facade\Folder;
 use pluck\model\Administrator;
 
 /**
@@ -67,25 +68,8 @@ final class Setup extends Controller {
         $scriptsTarget = Path::of('public', 'scripts');
         $stylesSource = Path::of('pluck', 'asset', 'styles');
         $stylesTarget = Path::of('public', 'styles');
-        self::copyFolder($scriptsSource, $scriptsTarget);
-        self::copyFolder($stylesSource, $stylesTarget);
-    }
-
-    /**
-     * 复制目录。
-     * 
-     */
-    private static function copyFolder($source, $target) {
-        $directory = opendir($source);
-        is_dir($target) or mkdir($target);
-        while (false !== ($name = readdir($directory))) {
-            if ('.' == $name || '..' == $name) continue;
-            $sourcePath = Path::join($source, $name);
-            $targetPath = Path::join($target, $name);
-            if (is_file($sourcePath)) copy($sourcePath, $targetPath);
-            else self::copyFolder($sourcePath, $targetPath);
-        }
-        closedir($directory);
+        Folder::copy($scriptsSource, $scriptsTarget);
+        Folder::copy($stylesSource, $stylesTarget);
     }
 
     /**

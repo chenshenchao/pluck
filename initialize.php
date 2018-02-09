@@ -9,6 +9,7 @@
 think\Facade::bind([
     pluck\facade\Manager::class => pluck\Manager::class,
     pluck\facade\Crypt::class => pluck\utility\Crypt::class,
+    pluck\facade\Folder::class => pluck\utility\Folder::class,
     pluck\facade\Path::class => pluck\utility\Path::class,
     pluck\facade\Sql::class => pluck\utility\Sql::class,
 ]);
@@ -17,6 +18,7 @@ think\Facade::bind([
 think\Loader::addClassAlias([
     'Pluck' => pluck\facade\Manager::class,
     'Crypt' => pluck\facade\Crypt::class,
+    'Folder' => pluck\facade\Folder::class,
     'Path' => pluck\facade\Path::class,
     'Sql' => pluck\facade\Sql::class,
 ]);
