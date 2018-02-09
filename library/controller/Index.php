@@ -1,13 +1,11 @@
 <?php namespace pluck\controller;
 
-use pluck\Controller;
-
 /**
  * 后台页面
  * 
  * 
  */
-final class Index extends Controller {
+final class Index extends Basic {
     /**
      * 
      */

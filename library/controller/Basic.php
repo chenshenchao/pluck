@@ -1,11 +1,13 @@
-<?php namespace pluck;
+<?php namespace pluck\controller;
+
+use think\Controller;
 
 /**
  * Pluck 控制器
  * 
  * 扩展了 ThinkPHP 的控制器，提供一些定制。
  */
-abstract class Controller extends \think\Controller {
+abstract class Basic extends Controller {
     /**
      * 初始化
      * - 把模板定位到 template 目录。

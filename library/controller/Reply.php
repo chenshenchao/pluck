@@ -1,6 +1,5 @@
 <?php namespace pluck\controller;
 
-use pluck\Controller;
 use pluck\facade\Path;
 use pluck\facade\Crypt;
 use pluck\model\Administrator;
@@ -10,7 +9,7 @@ use pluck\model\Administrator;
  * 
  * 回应后台各种 Post 请求。
  */
-final class Reply extends Controller {
+final class Reply extends Basic {
     /**
      * 
      */

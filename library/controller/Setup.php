@@ -1,6 +1,5 @@
 <?php namespace pluck\controller;
 
-use pluck\Controller;
 use pluck\facade\Path;
 use pluck\facade\Crypt;
 use pluck\facade\Folder;
@@ -11,7 +10,7 @@ use pluck\model\Administrator;
  * 
  * 提供安装 Pluck 的向导。
  */
-final class Setup extends Controller {
+final class Setup extends Basic {
     /**
      * 引导首页。
      * 
