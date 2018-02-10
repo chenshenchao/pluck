@@ -7,7 +7,10 @@
 
     'Database' => '数据库',
     'Administrator' => '管理员',
+    'Administration' => '管理',
+    'Archive' => '文档',
 
+    'New' => '新建',
     'Tip' => '提示',
     'Name' => '名称',
     'Type' => '类型',

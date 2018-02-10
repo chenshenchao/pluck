@@ -34,4 +34,22 @@ final class Index extends Basic {
         session('admin', null);
         return $this->redirect('/');
     }
+
+    /**
+     * 管理页。
+     * 
+     */
+    public function administration() {
+        session('?admin') or abort(404);
+        return $this->fetch('index/administration');
+    }
+
+    /**
+     * 管理员页。
+     * 
+     */
+    public function administrator() {
+        session('?admin') or abort(404);
+        return $this->fetch('index/administrator');
+    }
 }

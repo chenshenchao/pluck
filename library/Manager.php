@@ -27,6 +27,15 @@ final class Manager {
                 Route::get('login$', 'pluck\controller\Index@login');
                 Route::get('logout$', 'pluck\controller\Index@logout');
                 Route::post('checkin$', 'pluck\controller\Reply@checkin');
+                Route::get('administrator$', 'pluck\controller\Index@administrator');
+                Route::get('administration$', 'pluck\controller\Index@administration');
+                Route::group('archive', function() {
+                    Route::get('$', 'pluck\controller\Draft@index');
+                    Route::get('new$', 'pluck\controller\Draft@create');
+                    Route::get('edit/:id$', 'pluck\controller\Draft@edit', [], ['id' => '\d+']);
+                    Route::post('load$', 'pluck\controller\Draft@load');
+                    Route::post('save$', 'pluck\controller\Draft@save');
+                });
             });
         } else { // 未安装情况下设置安装路由。
             Route::get('install$', 'pluck\controller\Setup@index');

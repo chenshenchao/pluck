@@ -5,22 +5,41 @@
     bottom: 0;
     overflow-y: auto;
 
-    & > .navbar {
-        padding: 0;
+    [data-toggle=collapse] {
+        width: 1.5rem;
+        height: 1.5rem;
+        position: absolute;
+        top: 0.25rem;
+        right: 0.5rem;
+        border: 1px solid #777;
+        border-radius: 0.5rem;
+        background: transparent;
+        outline: none;
+        font-size: 0.5rem;
+        font-weight: 800;
+    }
 
-        & > nav {
-            width: 100%;
-            font-weight: 700;
-            text-indent: 1.5em;
+    .nav-item {
+        position: relative;
+
+        .nav {
+            font-weight: lighter;
+            text-indent: 3em;
+
             & > a.nav-link.active {
-                background-color: rgba(0, 37, 100, 0.5);
-            }
-
-            & > nav {
-                font-weight: lighter;
-                text-indent: 3em;
+                background-color: rgba(37, 0, 117, 0.5);
             }
         }
+    }
+
+    .nav {
+        width: 100%;
+        font-weight: 700;
+        text-indent: 1.5em;
+    }
+
+    & > .navbar {
+        padding: 0;
 
         a.nav-link {
             width: 100%;
@@ -31,7 +50,7 @@
 
             &.active {
                 color: white;
-                background-color: rgba(37, 0, 117, 0.5);
+                background-color: rgba(0, 37, 100, 0.5);
             }
         }
     }
