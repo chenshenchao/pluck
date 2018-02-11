@@ -12,6 +12,9 @@ $ ->
         form = $(this)
 
         tip = form.find '.tip'
+        button = form.find 'button[type=submit]'
+
+        button.attr 'disabled', true
 
         content = {}
         form.find('input[name], select[name]').each ->
@@ -27,5 +30,8 @@ $ ->
         $.post this.action, content, ((data) ->
             console.log data
             tip.text data.tip
+            if 0 == data['code']
+                window.location.href = '/' + content['link'] + '/login'
+            button.attr 'disabled', false
         ), 'json'
         return false

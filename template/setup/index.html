@@ -38,7 +38,11 @@
                     </tr>
                 </tfoot>
             </table>
+            {if $able}
             <a href="/install/1">{:lang('Next')}</a>
+            {else/}
+            <p>{:lang('Error')}</p>
+            {/if}
         </section>
         <footer>
             

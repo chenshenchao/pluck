@@ -16,13 +16,20 @@ final class Setup extends Basic {
      * 
      */
     public function index() {
+        $infos = [
+            ['PHP Version', PHP_VERSION, PHP_VERSION >= 7.2],
+            ['PDO', '', extension_loaded('pdo')],
+            ['GD', '', extension_loaded('gd')],
+            ['OpenSSL', '', extension_loaded('openssl')],
+        ];
+        $able = true;
+        foreach ($infos as &$info) {
+            $able &= $info[2];
+            if (!$info[2]) $info[1] = 'error';
+        }
         return $this->fetch('setup/index', [
-            'info' => [
-                ['PHP Version', PHP_VERSION, PHP_VERSION >= 7.2],
-                ['PDO', '', extension_loaded('pdo')],
-                ['GD', '', extension_loaded('gd')],
-                ['OpenSSL', '', extension_loaded('openssl')],
-            ]
+            'info' => $infos,
+            'able' => $able,
         ]);
     }
 
@@ -44,7 +51,10 @@ final class Setup extends Basic {
         self::makeKey();
         self::publishFrontend();
         self::initializeDatabase($post);
-        return [ 'tip' => 'Ok' ];
+        return [
+            'code' => 0,
+            'tip' => 'Ok'
+        ];
     }
 
     /**
@@ -104,7 +114,8 @@ final class Setup extends Basic {
         ]);
         Administrator::add(
             $post['account'],
-            $post['cipher']
+            $post['cipher'],
+            null, 0
         );
     }
 

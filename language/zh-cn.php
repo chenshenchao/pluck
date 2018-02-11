@@ -4,6 +4,8 @@
     'Main' => '主要',
     'Info' => '信息',
     'Home' => '首页',
+    'Status' => '状态',
+    'Next' => '继续',
 
     'Database' => '数据库',
     'Administrator' => '管理员',
