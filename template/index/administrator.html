@@ -3,3 +3,43 @@
 {block name="initial"}
 {:Sidebar::activate('main', 'administrator')}
 {/block}
+
+{block name="mainpane"}
+<section class="mainpane p-3">
+    <form class="ajax m-5" method="post" action="{:pluck_link('administrator/add')}" data-key="/public.key">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <label class="input-group-text">{:lang('Account')}</label>
+            </div>
+            <input class="form-control" name="account" type="text" placeholder="{:lang('Account')}"/>
+            <div class="input-group-prepend">
+                <label class="input-group-text">{:lang('Password')}</label>
+            </div>
+            <input class="form-control" name="password" type="password" placeholder="{:lang('Password')}"/>
+            <div class="input-group-prepend">
+                <label class="input-group-text">{:lang('Priority')}</label>
+            </div>
+            <input class="form-control" name="priority" type="text" placeholder="{:lang('Priority')}"/>
+            <div class="input-group-prepend">
+                <label class="input-group-text">{:lang('Name')}</label>
+            </div>
+            <input class="form-control" name="name" type="text" placeholder="{:lang('Name')}"/>
+            <input name="operation" type="hidden" value="add"/>
+            <div class="input-group-prepend">
+                <button class="btn btn-outline-info" type="submit">+</button>
+            </div>
+        </div>
+    </form>
+    <ol class="list-group">
+        {volist name="administrators" id="administrator"}
+        <li class="list-group-item">
+            <span>{$administrator.id}</span>
+            <span>{$administrator.name}</span>
+            <span>{$administrator.priority}</span>
+            <span>{$administrator.signdate}</span>
+            <span>{$administrator.logintime}</span>
+        </li>
+        {/volist}
+    </ol>
+</section>
+{/block}

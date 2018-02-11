@@ -1,5 +1,7 @@
 <?php namespace pluck\controller;
 
+use pluck\model\Archive;
+
 /**
  * 
  */
@@ -8,7 +10,11 @@ final class Draft extends Basic {
      * 
      */
     public function index() {
-        return $this->fetch('archive/index');
+        session('?admin') or abort(404);
+        $all = Archive::all();
+        return $this->fetch('archive/index', [
+            'archives' => $all,
+        ]);
     }
 
     /**

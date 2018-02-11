@@ -29,6 +29,7 @@ final class Manager {
                 Route::post('checkin$', 'pluck\controller\Reply@checkin');
                 Route::get('administrator$', 'pluck\controller\Index@administrator');
                 Route::get('administration$', 'pluck\controller\Index@administration');
+                Route::post('administrator/add$', 'pluck\controller\Reply@addAdministrator');
                 Route::group('archive', function() {
                     Route::get('$', 'pluck\controller\Draft@index');
                     Route::get('new$', 'pluck\controller\Draft@create');

@@ -4,13 +4,8 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
         <link rel="shortcut icon" type="image/x-icon" href="{:base64_image(pathof('pluck', 'logo.ico'))}"/>
-        {if !$Think.env.app_debug}
         <link rel="stylesheet" type="text/css" charset="utf-8" href="/styles/pluck.min.css"/>
-        {/if}
         <title>{:lang($title ?? 'Pluck')}</title>
-        {if $Think.env.app_debug}
-        {:inline_style(pathof('pluck', 'asset', 'styles', 'pluck.min.css'))}
-        {/if}
     </head>
     <body>
         <header class="bg-dark">
@@ -56,10 +51,6 @@
         <section class="mainpane">
         </section>
         {/block}
-        {if $Think.env.app_debug}
-        {:inline_script(pathof('pluck', 'asset', 'scripts', 'pluck.min.js'))}
-        {else/}
         <script type="text/javascript" charset="utf-8" src="/scripts/pluck.min.js"></script>
-        {/if}
     </body>
 </html>

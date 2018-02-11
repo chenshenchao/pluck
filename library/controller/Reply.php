@@ -27,7 +27,28 @@ final class Reply extends Basic {
         if(!isset($admin)) {
             return ['tip' => 'invailed username or password.'];
         }
+        $admin->logintime = date('Y-m-d h:i:s');
+        $admin->save();
         $admin->signin('admin');
         return ['target' => pluck_link()];
+    }
+
+    /**
+     * 
+     */
+    public function addAdministrator() {
+        session('?admin') or abort(404);
+        $post = request()->post();
+        $account = $post['account'];
+        $password = $post['password'];
+        $priority = $post['priority'];
+        $name = $post['name'];
+        $path = Path::of('runtime', 'private.key');
+        Crypt::decrypt($path, $account, $password, $priority, $name);
+        $administrator = Administrator::add(
+            $account,
+            $password
+        );
+        return ['target' => pluck_link('administrator')];
     }
 }

@@ -1,7 +1,7 @@
 -- 管理员
 CREATE TABLE __PREFIX__administrator(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `priority` BIGINT NOT NULL DEFAULT 7,
+    `priority` BIGINT UNSIGNED NOT NULL DEFAULT 7,
     `name` VARCHAR(31) NOT NULL,
     `account` VARCHAR(31) NOT NULL UNIQUE,
     `password` BINARY(16) NOT NULL,

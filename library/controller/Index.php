@@ -1,6 +1,7 @@
 <?php namespace pluck\controller;
 
 use pluck\facade\Sidebar;
+use pluck\model\Administrator;
 
 /**
  * 后台页面
@@ -13,7 +14,8 @@ final class Index extends Basic {
      */
     public function index() {
         session('?admin') or abort(404);
-        return $this->fetch('index/index');
+        $all = Administrator::all();
+        return $this->fetch('index/index', []);
     }
 
     /**
@@ -50,6 +52,9 @@ final class Index extends Basic {
      */
     public function administrator() {
         session('?admin') or abort(404);
-        return $this->fetch('index/administrator');
+        $all = Administrator::all();
+        return $this->fetch('index/administrator', [
+            'administrators' => $all,
+        ]);
     }
 }

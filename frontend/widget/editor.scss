@@ -1,0 +1,21 @@
+/**
+ * 编辑器
+ */
+ .editor {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    right: 2rem;
+    bottom: 2rem;
+
+    .toparea {
+        input {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+    }
+
+    .ql-container {
+        height: 20rem;
+    }
+}

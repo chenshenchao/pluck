@@ -3,3 +3,15 @@
 {block name="initial"}
 {:Sidebar::activate('archive', 'new')}
 {/block}
+
+{block name="mainpane"}
+<section class="mainpane">
+    <div class="editor" data-action="{:pluck_link('archive/save')}">
+        <div class="toparea">
+            <input name="title" placeholder="{:lang('Title')}"/>
+            {include file="archive/toolbar"/}
+        </div>
+        <div class="ql-container"></div>
+    </div>
+</section>
+{/block}

@@ -27,11 +27,12 @@ final class Administrator extends Model {
      * @param string[option] $name: 名。
      * @return mixed: 模型实例。
      */
-    public static function add($account, $password, $name=null) {
+    public static function add($account, $password, $name=null, $priority=7) {
         return self::create([
             'name' => $name ?? 'Administrator',
             'account' => $account,
-            'password' => ['exp', "UNHEX(MD5('$password'))"]
+            'password' => ['exp', "UNHEX(MD5('$password'))"],
+            'priority' => $priority,
         ]);
     }
 
@@ -44,6 +45,7 @@ final class Administrator extends Model {
         session($name, [
             'id' => $this->id,
             'name' => $this->name,
+            'priority' => $this->priority,
             'signdate' => $this->signdate,
             'logintime' => $this->logintime
         ]);
