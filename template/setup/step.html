@@ -3,18 +3,18 @@
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-        <link rel="shortcut icon" type="image/x-icon" href="{:base64_image(pathof('pluck', 'logo.ico'))}"/>
+        <link rel="shortcut icon" type="image/x-icon" href="{:Html::base64Image(pathof('pluck', 'logo.ico'))}"/>
         <title>{:lang('Setup')}</title>
-        {:inline_style(pathof('pluck', 'asset', 'styles', 'setup.min.css'))}
+        {:Html::inlineStyle(pathof('pluck', 'asset', 'styles', 'setup.min.css'))}
     </head>
     <body>
         <header>
-            <img alt="logo" src="{:base64_image(pathof('pluck', 'logo.png'))}"/>
+            <img alt="logo" src="{:Html::base64Image(pathof('pluck', 'logo.png'))}"/>
         </header>
         {block name="content"}{/block}
         <footer>
             
         </footer>
-        {:inline_script(pathof('pluck', 'asset', 'scripts', 'setup.min.js'))}
+        {:Html::inlineScript(pathof('pluck', 'asset', 'scripts', 'setup.min.js'))}
     </body>
 </html>

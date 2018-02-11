@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-        <link rel="shortcut icon" type="image/x-icon" href="{:base64_image(pathof('pluck', 'logo.ico'))}"/>
+        <link rel="shortcut icon" type="image/x-icon" href="{:Html::base64Image(pathof('pluck', 'logo.ico'))}"/>
         <link rel="stylesheet" type="text/css" charset="utf-8" href="/styles/pluck.min.css"/>
         <title>{:lang($title ?? 'Pluck')}</title>
     </head>
@@ -11,7 +11,7 @@
         <header class="bg-dark">
             <nav class="navbar">
                 <a class="navbar-brand" href="{:pluck_link()}">
-                    <img alt="icon" src="{:base64_image(pathof('pluck', 'logo.ico'))}"/>
+                    <img alt="icon" src="{:Html::base64Image(pathof('pluck', 'logo.ico'))}"/>
                     <span class="text">Pluck</span>
                 </a>
                 <ul class="navbar-nav mr-auto">
