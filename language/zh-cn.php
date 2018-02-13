@@ -35,4 +35,7 @@
 
     'Login' => '登入',
     'Logout' => '登出',
+
+    'captcha error.' => '验证码错误。',
+    'invailed username or password.' => '用户名或密码错误。'
 ];

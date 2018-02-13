@@ -14,6 +14,7 @@ import faTrash from '@fortawesome/fontawesome-free-solid/faTrash'
 import faSearch from '@fortawesome/fontawesome-free-solid/faSearch'
 import faPencilAlt from '@fortawesome/fontawesome-free-solid/faPencilAlt'
 import faCaretLeft from '@fortawesome/fontawesome-free-solid/faCaretLeft'
+import faSignOutAlt from '@fortawesome/fontawesome-free-solid/faSignOutAlt'
 import faAngleDoubleLeft from '@fortawesome/fontawesome-free-solid/faAngleDoubleLeft'
 import faAngleDoubleRight from '@fortawesome/fontawesome-free-solid/faAngleDoubleRight'
 
@@ -24,6 +25,7 @@ fontawesome.library.add(
     faSearch,
     faPencilAlt,
     faCaretLeft,
+    faSignOutAlt,
     faAngleDoubleLeft,
     faAngleDoubleRight,
 )

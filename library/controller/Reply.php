@@ -11,6 +11,7 @@ use pluck\model\Administrator;
  */
 final class Reply extends Basic {
     /**
+     * 检入管理员。
      * 
      */
     public function checkin() {
@@ -21,11 +22,11 @@ final class Reply extends Basic {
         $path = Path::of('runtime', 'private.key');
         Crypt::decrypt($path, $account, $password, $captcha);
         if(!captcha_check($captcha)) {
-            return ['tip' => 'captcha error.'];
+            return ['tip' => lang('captcha error.')];
         }
         $admin = Administrator::checkin($account, $password);
         if(!isset($admin)) {
-            return ['tip' => 'invailed username or password.'];
+            return ['tip' => lang('invailed username or password.')];
         }
         $admin->logintime = date('Y-m-d h:i:s');
         $admin->save();
@@ -34,6 +35,7 @@ final class Reply extends Basic {
     }
 
     /**
+     * 添加管理员。
      * 
      */
     public function addAdministrator() {

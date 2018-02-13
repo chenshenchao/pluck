@@ -9,10 +9,16 @@ $ ->
     $('form.ajax[action][data-key]').submit ->
         form = $(this)
         action = this.action
+        button = form.find 'button[type=submit]'
+
+        # 禁用提交按钮
+        button.attr 'disabled', true
+
         # 获取公钥
         $.get this.dataset.key, (key) ->
             encryptor = new JSEncrypt()
             encryptor.setPublicKey key
+
             # 生成请求参数
             content = {}
             form.find('input[name], select[name]').each ->
@@ -33,5 +39,8 @@ $ ->
                         form.find('.tip').each ->
                             this.innerText = data['tip']
                     form.find('img[alt=captcha]').click()
+
+                # 使按钮再度生效
+                button.attr 'disabled', false
             ), 'json'
         return false;
