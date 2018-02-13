@@ -1,6 +1,6 @@
 {
   "name": "pluck",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Yet a PHP Content Management Framework, powered by ThinkPHP.",
   "scripts": {
     "build": "./node_modules/.bin/webpack -p",
