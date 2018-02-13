@@ -15,6 +15,18 @@
         }
     }
 
+    .save {
+        outline: none;
+    }
+
+    [name=status] {
+        width: 8em;
+
+        .ql-picker-label::before, .ql-picker-item::before {
+            content: attr(data-label);
+        }
+    }
+
     .ql-container {
         height: 20rem;
     }

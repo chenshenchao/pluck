@@ -6,6 +6,11 @@
     'Home' => '首页',
     'Status' => '状态',
     'Next' => '继续',
+    'Title' => '标题',
+    'Trash' => '垃圾箱',
+    'Public' => '公开',
+    'Private' => '私有',
+    'Discard' => '丢弃',
 
     'Database' => '数据库',
     'Administrator' => '管理员',

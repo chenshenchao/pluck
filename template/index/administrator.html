@@ -33,11 +33,20 @@
     <ol class="list-group">
         {volist name="administrators" id="administrator"}
         <li class="list-group-item">
-            <span>{$administrator.id}</span>
-            <span>{$administrator.name}</span>
-            <span>{$administrator.priority}</span>
-            <span>{$administrator.signdate}</span>
-            <span>{$administrator.logintime}</span>
+            <div class="input-group">
+                <span class="input-group-prepend">
+                    <label class="input-group-text">{$administrator.id}</label>
+                </span>
+                <input name="name" class="form-control" type="text" value="{$administrator.name}"/>
+                <span class="input-group-append">
+                    <label class="input-group-text">{:lang('Priority')}</label>
+                </span>
+                <input name="priority" class="form-control" type="text" value="{$administrator.priority}"/>
+                <span class="input-group-append">
+                    <label class="input-group-text">{$administrator.signdate|date='Y-m-d'}</label>
+                    <label class="input-group-text">{$administrator.logintime|date='Y-m-d: h:i:s'}</label>
+                </span>
+            </div>
         </li>
         {/volist}
     </ol>

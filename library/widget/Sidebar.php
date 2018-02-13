@@ -32,6 +32,10 @@ final class Sidebar {
                     'new' => [
                         'text' => 'New',
                         'link' => pluck_link('archive/new'),
+                    ],
+                    'trash' => [
+                        'text' => 'Trash',
+                        'link' => pluck_link('archive/trash'),
                     ]
                 ]
             ]

@@ -1,5 +1,15 @@
 <div class="ql-toolbar">
     <span class="ql-formats">
+        <button tyle="submit">
+            <i class="fa fa-save"></i>
+        </button>
+        <select name="status">
+            <option value="public">{:lang('Public')}</option>
+            <option value="private" selected>{:lang('Private')}</option>
+            <option value="discard">{:lang('Discard')}</option>
+        </select>
+    </span>
+    <span class="ql-formats">
         <select class="ql-size">
             <option value="small">{:lang('Small')}</option>
             <option value="normal" selected>{:lang('Normal')}</option>

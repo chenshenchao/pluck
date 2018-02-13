@@ -33,7 +33,9 @@
                     <li class="nav-item">
                         <a class="nav-link{$item.active ? ' active' : ''}" href="{$item.link}">{:lang($item.text)}</a>
                         {notempty name="$item.children"}
-                        <button data-toggle="collapse" data-target="#sidebar-{$id}">&gt;</button>
+                        <button data-toggle="collapse" data-target="#sidebar-{$id}">
+                            <i class="fa fa-caret-left"></i>
+                        </button>
                         <div class="collapse {$item.active ? ' show' : ''}" id="sidebar-{$id}" data-parent="#sidebar">
                             <nav class="nav flex-column">
                                 {volist name="$item.children" id="child"}

@@ -6,13 +6,14 @@
 
 {block name="mainpane"}
 <section class="mainpane">
-    <div class="editor" data-action="{:pluck_link('archive/save')}">
+    <form class="editor" method="post" action="{:pluck_link('archive/interact')}">
         <div class="toparea">
-            <input name="title" placeholder="{:lang('Title')}"/>
-            
+            <input name="title" type="text" placeholder="{:lang('Title')}"/>
+            <label>ID:</label>
+            <span class="id">{$archive.id}</span>
             {include file="archive/toolbar"/}
         </div>
         <div class="ql-container"></div>
-    </div>
+    </form>
 </section>
 {/block}

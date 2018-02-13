@@ -47,7 +47,8 @@ final class Administrator extends Model {
             'name' => $this->name,
             'priority' => $this->priority,
             'signdate' => $this->signdate,
-            'logintime' => $this->logintime
+            'logintime' => $this->logintime,
+            'key' => md5(time().mt_rand(0,10000))
         ]);
     }
 }

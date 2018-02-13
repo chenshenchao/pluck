@@ -13,6 +13,17 @@ module.exports =
     module:
         rules: [
             {
+                test: /\.svg$/
+                use: [
+                    {
+                        loader: 'html-loader'
+                        options: {
+                            minimize: true
+                        }
+                    }
+                ]
+            }
+            {
                 test: /\.scss$/
                 use: ExtractTextPlugin.extract {
                     fallback: 'style-loader'
@@ -21,6 +32,20 @@ module.exports =
                         'sass-loader'
                     ]
                 }
+            }
+            {
+                test: /\.js$/
+                use: [
+                    {
+                        loader: 'babel-loader'
+                        options: {
+                            presets: ['es2015']
+                            ignore: [
+                                'jsencrypt'
+                            ]
+                        }
+                    }
+                ]
             }
             {
                 test: /\.coffee$/

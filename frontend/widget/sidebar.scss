@@ -11,12 +11,15 @@
         position: absolute;
         top: 0.25rem;
         right: 0.5rem;
-        border: 1px solid #777;
-        border-radius: 0.5rem;
+        border: none;
         background: transparent;
         outline: none;
-        font-size: 0.5rem;
+        font-size: 1rem;
         font-weight: 800;
+    }
+
+    .active + [data-toggle=collapse] > svg {
+        transform: rotateZ(-90deg);
     }
 
     .nav-item {
