@@ -10,9 +10,9 @@ final class Draft extends Basic {
      * 
      */
     public function index() {
-        $pagination = Archive::where([
-            'status' => 'private'
-        ])->paginate(4);
+        $pagination = Archive::where(
+            'status', '<>', 'obsolete'
+        )->paginate(4);
         return $this->fetch('archive/index', [
             'pagination' => $pagination
         ]);
@@ -37,7 +37,12 @@ final class Draft extends Basic {
     }
 
     public function trash() {
-        return $this->fetch('archive/trash');
+        $pagination = Archive::where(
+            'status', 'obsolete'
+        )->paginate(4);
+        return $this->fetch('archive/trash', [
+            'pagination' => $pagination
+        ]);
     }
 
     /**

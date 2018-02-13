@@ -45,10 +45,19 @@ final class Reply extends Basic {
         $name = $post['name'];
         $path = Path::of('runtime', 'private.key');
         Crypt::decrypt($path, $account, $password, $priority, $name);
-        $administrator = Administrator::add(
-            $account,
-            $password
-        );
-        return ['target' => pluck_link('administrator')];
+        try {
+            $administrator = new Administrator;
+            $administrator->save([
+                'name' => $name ?? 'Administrator',
+                'account' => $account,
+                'password' => ['exp', "UNHEX(MD5('$password'))"],
+                'priority' => $priority,
+            ]);
+            return ['target' => pluck_link('administrator')];
+        } catch (\Exception $e){
+            return [
+                'tip' => $e->getMessage()
+            ];
+        }
     }
 }

@@ -6,7 +6,7 @@ CREATE TABLE __PREFIX__administrator(
     `account` VARCHAR(31) NOT NULL UNIQUE,
     `password` BINARY(16) NOT NULL,
     `signdate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `logintime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `logindate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 
@@ -15,8 +15,9 @@ CREATE TABLE __PREFIX__archive(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     `title` VARCHAR(127) NOT NULL,
     `content` LONGTEXT NOT NULL,
-    `status` ENUM("private", "public") NOT NULL DEFAULT "public",
+    `status` ENUM("private", "public", "obsolete") NOT NULL DEFAULT "private",
     `createdate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `modifydate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 

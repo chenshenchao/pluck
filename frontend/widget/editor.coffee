@@ -132,7 +132,8 @@ $ ->
                 status: toparea.find('select[name=status]').val()
             }
             $.post this.action, param, ((data) ->
-                console.log data
+                console.log 
+                window.location.href = 'edit/' + data.id
             ), 'json'
             return false
 

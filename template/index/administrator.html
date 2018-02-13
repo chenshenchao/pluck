@@ -11,23 +11,26 @@
             <div class="input-group-prepend">
                 <label class="input-group-text">{:lang('Account')}</label>
             </div>
-            <input class="form-control" name="account" type="text" placeholder="{:lang('Account')}"/>
+            <input class="form-control" name="account" type="text" placeholder="{:lang('Account')}" required/>
             <div class="input-group-prepend">
                 <label class="input-group-text">{:lang('Password')}</label>
             </div>
-            <input class="form-control" name="password" type="password" placeholder="{:lang('Password')}"/>
+            <input class="form-control" name="password" type="password" placeholder="{:lang('Password')}" required/>
             <div class="input-group-prepend">
                 <label class="input-group-text">{:lang('Priority')}</label>
             </div>
-            <input class="form-control" name="priority" type="text" placeholder="{:lang('Priority')}"/>
+            <input class="form-control" name="priority" type="text" placeholder="{:lang('Priority')}" required/>
             <div class="input-group-prepend">
                 <label class="input-group-text">{:lang('Name')}</label>
             </div>
-            <input class="form-control" name="name" type="text" placeholder="{:lang('Name')}"/>
+            <input class="form-control" name="name" type="text" placeholder="{:lang('Name')}" required/>
             <input name="operation" type="hidden" value="add"/>
             <div class="input-group-prepend">
                 <button class="btn btn-outline-info" type="submit">+</button>
             </div>
+        </div>
+        <div class="tip">
+
         </div>
     </form>
     <ol class="list-group">
@@ -36,8 +39,13 @@
             <div class="input-group">
                 <span class="input-group-prepend">
                     <label class="input-group-text">{$administrator.id}</label>
+                    <label class="input-group-text">{$administrator.account}</label>
                 </span>
                 <input name="name" class="form-control" type="text" value="{$administrator.name}"/>
+                <span class="input-group-append">
+                    <label class="input-group-text">{:lang('Password')}</label>
+                </span>
+                <input name="name" class="form-control" type="password" value="{$administrator.password}"/>
                 <span class="input-group-append">
                     <label class="input-group-text">{:lang('Priority')}</label>
                 </span>
@@ -45,6 +53,9 @@
                 <span class="input-group-append">
                     <label class="input-group-text">{$administrator.signdate|date='Y-m-d'}</label>
                     <label class="input-group-text">{$administrator.logintime|date='Y-m-d: h:i:s'}</label>
+                    <a href="#" data-toggle="button" class="btn btn-outline-secondary">
+                        <i class="fa fa-pencil-alt"></i>
+                    </a>
                 </span>
             </div>
         </li>
