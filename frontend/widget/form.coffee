@@ -5,6 +5,22 @@ import $ from 'jquery'
 import {JSEncrypt} from 'jsencrypt'
 
 $ ->
+    # 表单冻结
+    $('form.freeze').each ->
+        form = $(this)
+        # 冻结
+        freeze = ->
+            form.find('input, select, textarea, button[type=submit]').attr 'disabled', true
+        # 解冻
+        unfreeze = ->
+            form.find('input, select, textarea, button[type=submit]').attr 'disabled', false
+        form.find('.freezer').on 'click.bs.toggle', (e) ->
+            if 'true' == this.getAttribute 'aria-pressed'
+                freeze()
+            else unfreeze()
+        freeze()
+
+
     # 表单提交
     $('form.ajax[action][data-key]').submit ->
         form = $(this)

@@ -1,0 +1,32 @@
+{extend name="layout"/}
+
+{block name="initial"}
+{:Sidebar::activate('main', 'configuration')}
+{/block}
+
+{block name="mainpane"}
+<section class="mainpane">
+    <form class="ajax m-5" method="post">
+        <div class="input-group">
+            <span class="input-group-prepend">
+
+            </span>
+            <input name="name" class="form-control col-3" placeholder="{:lang('Name')}" required/>
+            <span class="input-group-prepend input-group-append">
+                <label class="input-group-text">=</label>
+            </span>
+            <input name="value" class="form-control" placeholder="{:lang('Value')}" required/>
+            <span class="input-group-append">
+                <button class="btn btn-info">+</button>
+            </span>
+        </div>
+    </form>
+    <ol class="list-group">
+        {volist name="pagination" id="variant"}
+        <li class="list-group-item">
+
+        </li>
+        {/volist}
+    </ol>
+</section>
+{/block}

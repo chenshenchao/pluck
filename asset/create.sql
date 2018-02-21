@@ -17,8 +17,17 @@ CREATE TABLE __PREFIX__archive(
     `content` LONGTEXT NOT NULL,
     `status` ENUM("private", "public", "obsolete") NOT NULL DEFAULT "private",
     `createdate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `modifydate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `modifytime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
+);
+
+-- 变量
+CREATE TABLE __PREFIX__variant(
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(63) NOT NULL UNIQUE,
+    `value` VARCHAR(127) NOT NULL,
+    `modifytime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(id)
 );
 
 -- 关键字

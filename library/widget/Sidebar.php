@@ -15,13 +15,13 @@ final class Sidebar {
                 'text' => 'Main',
                 'link' => pluck_link(),
                 'children' => [
+                    'configuration' => [
+                        'text' => 'Configuration',
+                        'link' => pluck_link('configuration'),
+                    ],
                     'administration' => [
                         'text' => 'Administration',
                         'link' => pluck_link('administration'),
-                    ],
-                    'administrator' => [
-                        'text' => 'Administrator',
-                        'link' => pluck_link('administrator'),
                     ]
                 ]
             ],

@@ -15,6 +15,7 @@
     'Database' => '数据库',
     'Administrator' => '管理员',
     'Administration' => '管理',
+    'Configuration' => '配置',
     'Archive' => '文档',
 
     'New' => '新建',
@@ -35,6 +36,8 @@
 
     'Login' => '登入',
     'Logout' => '登出',
+
+    'Subordinate' => '下级',
 
     'captcha error.' => '验证码错误。',
     'invailed username or password.' => '用户名或密码错误。'

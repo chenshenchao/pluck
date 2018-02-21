@@ -8,10 +8,12 @@
         <title>{:lang($title ?? 'Pluck')}</title>
     </head>
     <body>
+        {// 标志横幅}
         <header class="banner">
             <img alt="logo" src="{:Html::base64Image(pathof('pluck', 'logo.png'))}"/>
         </header>
         <section class="content">
+            {// 登入表单}
             <form class="ajax" method="post" action="{:pluck_link('checkin')}" data-key="/public.key">
                 <div class="field">
                     <i class="fa fa-user-circle"></i>

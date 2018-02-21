@@ -3,3 +3,166 @@
 {block name="initial"}
 {:Sidebar::activate('main', 'administration')}
 {/block}
+
+{block name="mainpane"}
+<section class="mainpane">
+    {// 管理员信息}
+    <h3 class="mx-5 mt-5 pb-2 border-bottom border-dark">{:lang('Info')}</h3>
+    <form class="ajax freeze mx-5" method="post" action="{:pluck_link('administrator/amend')}" data-key="/public.key">
+        <div class="card bg-dark text-white">
+            <div class="card-header">
+                <i class="fa fa-user"></i>
+                <span class="badge badge-dark">{$Think.session.admin.id}</span>
+                <button type="button" data-toggle="button" class="btn btn-dark float-right freezer">
+                    <i class="fa fa-pencil-alt"></i>
+                </button>
+                <button type="submit" class="btn btn-dark float-right">
+                    <i class="fa fa-save"></i>
+                </button>
+            </div>
+            <div class="form-group row mx-5 mb-1 mt-2">
+                <label class="col-2 col-form-label">
+                    <i class="fa fa-key"></i>
+                    <span>{:lang('Password')}</span>
+                </label>
+                <input class="col-4 form-control" name="password" type="password" required/>
+                <label class="col-2 col-form-label">
+                    <i class="fa fa-key"></i>
+                    <span>{:lang('Confirm')}</span>
+                </label>
+                <input class="col-4 form-control" name="confirm" type="password" required/>
+            </div>
+            <div class="form-group row mx-5 mb-1 mt-2">
+                <label class="col-2 col-form-label">
+                    <i class="fa fa-id-card"></i>
+                    <span>{:lang('Name')}</span>
+                </label>
+                <input class="col-4 form-control" name="name" type="text" value="{$Think.session.admin.name}" required/>
+                <label class="col-2 col-form-label">
+                    <i class="fab fa-superpowers"></i>
+                    <span>{:lang('Priority')}</span>
+                </label>
+                <input class="col-4 form-control" name="priority" type="text" required/>
+            </div>
+        </div>
+    </form>
+    {// 新建下级管理员}
+    <h3 class="mx-5 mt-5 pb-2 border-bottom border-primary text-primary">{:lang('New')}</h3>
+    <form class="ajax mx-5" method="post" action="{:pluck_link('administrator/add')}" data-key="/public.key">
+        <div class="card bg-info text-white">
+            <div class="card-header">
+                <i class="fa fa-user-plus"></i>
+            </div>
+            <div class="form-group row mx-5 mb-1 mt-2">
+                <label class="col-2 col-form-label">
+                    <i class="fa fa-user"></i>
+                    <span>{:lang('Account')}</span>
+                </label>
+                <input class="col-4 form-control" name="account" type="text" required/>
+                <label class="col-2 col-form-label">
+                    <i class="fa fa-key"></i>
+                    <span>{:lang('Password')}</span>
+                </label>
+                <input class="col-4 form-control" name="password" type="password" required/>
+            </div>
+            <div class="form-group row mx-5 mb-1">
+                <label class="col-2 col-form-label">
+                    <i class="fa fa-id-card"></i>
+                    <span>{:lang('Name')}</span>
+                </label>
+                <input class="col-4 form-control" name="name" type="text" required/>
+                <label class="col-2 col-form-label">
+                    <i class="fa fa-key"></i>
+                    <span>{:lang('Confirm')}</span>
+                </label>
+                <input class="col-4 form-control" name="confirm" type="password" required/>
+            </div>
+            <div class="form-group row mx-5 mb-1">
+                <label class="col-2 col-form-label">
+                    <i class="fab fa-superpowers"></i>
+                    <span>{:lang('Priority')}</span>
+                </label>
+                <input class="col-4 form-control" name="priority" type="text" required/>
+                <button class="btn btn-outline-dark ml-auto" type="submit">{:lang('New')}</button>
+            </div>
+            <div class="tip">
+
+            </div>
+        </div>
+    </form>
+    {// 管理下级管理员}
+    <h3 class="mx-5 mt-5">{:lang('Subordinate')}</h3>
+    <ol class="list-group mx-5 mb-3 list-group-flush">
+        {volist name="pagination" id="administrator" key="i"}
+        <li class="list-group-item">
+            <form class="ajax freeze card" method="post" action="{:pluck_link('administrator/amend')}" data-key="/public.key">
+                <h5 class="card-header">
+                    <span class="badge badge-dark">{$administrator.id}</span>
+                    <span class="badge badge-info float-right">{$administrator.signdate|date='Y-m-d'}</span>
+                </h5>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="fa fa-user"></i>
+                        <span>{$administrator.account}</span>
+                    </h5>
+                    <p class="card-text">
+                        <span class="badge badge-primary">{:lang('Last login time')}</span>
+                        <span class="badge">{$administrator.logintime|date='Y-m-d: h:i:s'}</span>
+                    </p>
+                    <div class="input-group">
+                        <span class="input-group-prepend">
+                            <label class="input-group-text">
+                                <i class="fa fa-id-card"></i>
+                            </label>
+                        </span>
+                        <input name="name" class="form-control" type="text" value="{$administrator.name}"/>
+                        <span class="input-group-append">
+                            <label class="input-group-text">
+                                <i class="fa fa-key"></i>
+                            </label>
+                        </span>
+                        <input name="name" class="form-control" type="password" value="{$administrator.password}"/>
+                        <span class="input-group-append">
+                            <label class="input-group-text">
+                                <i class="fab fa-superpowers"></i>
+                            </label>
+                        </span>
+                        <input name="priority" class="form-control col-1" type="text" value="{$administrator.priority}"/>
+                        <span class="input-group-append">
+                            <a href="#" data-toggle="button" class="btn btn-outline-secondary freezer">
+                                <i class="fa fa-pencil-alt"></i>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </li>
+        {/volist}
+    </ol>
+    {// 分页索引}
+    {if $pagination->hasPages()}
+    <ul class="pagination mx-5">
+        <li class="page-item">
+            <a class="page-link" href="?page=1">
+                <i class="fa fa-angle-double-left"></i>
+            </a>
+        </li>
+        {for start="-3" end="3"}
+        {assign name="now" value=":$pagination->currentPage() + $i"/}
+        {if $pagination->lastPage() >= $now and $now > 0}
+        <li class="page-item{$i === 0 ? ' active' : ''}">
+            <a class="page-link" href="?page={$now}">
+                {$now}
+            </a>
+        </li>
+        {/if}
+        {/for}
+        <li class="page-item">
+            <a class="page-link" href="?page={:$pagination->lastPage()}">
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+        </li>
+    </ul>
+    {/if}
+</section>
+{/block}

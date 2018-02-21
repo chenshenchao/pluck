@@ -55,8 +55,34 @@ final class Reply extends Basic {
                 'password' => ['exp', "UNHEX(MD5('$password'))"],
                 'priority' => $priority,
             ]);
-            return ['target' => pluck_link('administrator')];
+            return ['target' => pluck_link('administration')];
         } catch (\Exception $e){
+            return [
+                'tip' => $e->getMessage()
+            ];
+        }
+    }
+
+    /**
+     * 增加变量。
+     * 
+     */
+    public function addVariant() {
+        session('?admin') or abort(404);
+        $post = request()->post();
+        $name = $post['name'];
+        $value = $post['value'];
+        $path = Path::of('runtime', 'private.key');
+        Crypt::decrypt($path, $name, $variant);
+        try {
+            $variant = new Variant;
+            $variant->save([
+                'name' => $name,
+                'value' => $value,
+            ]);
+            return ['target' => pluck_link('configuration')];
+        }
+        catch (\Excepation $e) {
             return [
                 'tip' => $e->getMessage()
             ];
