@@ -25,6 +25,8 @@ final class Sql extends Facade {
         }
         $statements = array_filter(explode(';', $code));
         foreach ($statements as $statement) {
+            $statement = trim($statement);
+            if (empty($statement)) continue;
             \Db::execute($statement);
         }
     }

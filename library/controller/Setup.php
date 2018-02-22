@@ -47,14 +47,22 @@ final class Setup extends Basic {
      */
     public function install() {
         $post = request()->post();
-        self::configure($post);
-        self::makeKey();
-        self::publishFrontend();
-        self::initializeDatabase($post);
-        return [
-            'code' => 0,
-            'tip' => 'Ok'
-        ];
+        try {
+            self::configure($post);
+            self::makeKey();
+            self::publishFrontend();
+            self::initializeDatabase($post);
+            return [
+                'code' => 0,
+                'tip' => 'Ok'
+            ];
+        } catch (\Exception $e) {
+            self::uninstall($post);
+            return [
+                'code' => 1,
+                'tip' => $e->getMessage()
+            ];
+        }
     }
 
     /**
@@ -86,7 +94,7 @@ final class Setup extends Basic {
      * 
      */
     private static function initializeDatabase($post) {
-        $path = pathof('pluck', 'asset', 'config', 'database.php');
+        $path = Path::of('pluck', 'asset', 'config', 'database.php');
         $configuration = str_replace([
             '__TYPE__',
             '__HOSTNAME__',
@@ -106,17 +114,20 @@ final class Setup extends Basic {
             $post['prefix'],
             $post['charset'],
         ], file_get_contents($path));
-        $file = fopen(pathof('config', 'database.php'), 'w');
+        $file = fopen(Path::of('config', 'database.php'), 'w');
         fputs($file, $configuration);
         fclose($file);
-        \Sql::execute(pathof('pluck', 'asset', 'create.sql'), [
+        \Sql::execute(Path::of('pluck', 'asset', 'create.sql'), [
             '__PREFIX__' => $post['prefix'],
         ]);
-        Administrator::add(
-            $post['account'],
-            $post['cipher'],
-            null, 0
-        );
+        $password = $post['cipher'];
+        Administrator::create([
+            'id' => 100000000,
+            'name' => 'Administrator',
+            'account' => $post['account'],
+            'password' => ['exp', "UNHEX(MD5('$password'))"],
+            'priority' => 0,
+        ]);
     }
 
     /**
@@ -124,14 +135,30 @@ final class Setup extends Basic {
      * 
      */
     private static function configure($post) {
-        $path = pathof('pluck', 'asset', 'config', 'pluck.php');
+        $path = Path::of('pluck', 'asset', 'config', 'pluck.php');
         $configuration = str_replace([
             '__LINK__',
         ], [
             $post['link'],
         ], file_get_contents($path));
-        $file = fopen(pathof('config', 'pluck.php'), 'w');
+        $file = fopen(Path::of('config', 'pluck.php'), 'w');
         fputs($file, $configuration);
         fclose($file);
+    }
+
+    /**
+     * 卸载。
+     * 
+     */
+    private static function uninstall($post) {
+        $configurationPath = Path::of('config', 'pluck.php');
+        $privateKeyPath = Path::of('runtime', 'private.key');
+        $publicKeyPath = Path::of('public', 'public.key');
+        unlink($configurationPath);
+        unlink($privateKeyPath);
+        unlink($publicKeyPath);
+        \Sql::execute(Path::of('pluck', 'asset', 'delete.sql'), [
+            '__PREFIX__' => $post['prefix'],
+        ]);
     }
 }

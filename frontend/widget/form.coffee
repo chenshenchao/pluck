@@ -38,9 +38,13 @@ $ ->
             # 生成请求参数
             content = {}
             form.find('input[name], select[name]').each ->
-                content[this.name] = encryptor.encrypt $(this).val()
+                value = $(this).val()
+                crypt = encryptor.encrypt value
+                content[this.name] = crypt
             form.find('textarea[name]').each ->
-                content[this.name] = encryptor.encrypt $(this).text()
+                value = $(this).text()
+                crypt = encryptor.encrypt value
+                content[this.name] = crypt
 
             # 提交表单
             $.post action, content, ((data) ->

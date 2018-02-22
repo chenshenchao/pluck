@@ -5,9 +5,19 @@ import './setup.scss'
 import $ from 'jquery'
 import 'bootstrap'
 
+# 图标
+import fontawesome from '@fortawesome/fontawesome'
+import faCheckCircle from '@fortawesome/fontawesome-free-solid/faCheckCircle'
+import faExclamationCircle from '@fortawesome/fontawesome-free-solid/faExclamationCircle'
+
+fontawesome.library.add(
+    faCheckCircle,
+    faExclamationCircle,
+)
+
 # 
 $ ->
-# 表单提交
+    # 表单提交
     $('form.ajax[action]').submit ->
         form = $(this)
 
