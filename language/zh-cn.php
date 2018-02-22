@@ -11,6 +11,7 @@
     'Public' => '公开',
     'Private' => '私有',
     'Discard' => '丢弃',
+    'Priority' => '优先级',
 
     'Database' => '数据库',
     'Administrator' => '管理员',

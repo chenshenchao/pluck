@@ -29,7 +29,9 @@ final class Manager {
                 Route::get('logout$', 'pluck\controller\Index@logout');
                 Route::get('administration$', 'pluck\controller\Index@administrate');
                 Route::get('configuration$', 'pluck\controller\Index@configure');
+                Route::post('configure/add$', 'pluck\controller\Reply@addVariant');
                 Route::post('administrator/add$', 'pluck\controller\Reply@addAdministrator');
+                Route::post('administrator/amend$', 'pluck\controller\Reply@amendAdministrator');
                 Route::group('archive', function() {
                     Route::get('$', 'pluck\controller\Draft@index');
                     Route::get('new$', 'pluck\controller\Draft@create');

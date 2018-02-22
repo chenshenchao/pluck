@@ -11,12 +11,10 @@ final class Crypt extends Facade {
     /**
      * 解密。
      * 
-     * @param string $path: 私钥路径。
      * @param string&... $data: 解密的信息字符串。
      */
-    public static function decrypt($path, &...$data) {
-        $text = file_get_contents($path);
-        $key = openssl_pkey_get_private($text);
+    public static function decrypt(&...$data) {
+        $key = self::getPrivateKey();
         foreach($data as &$value) {
             $raw = base64_decode($value);
             if (!openssl_private_decrypt($raw, $value, $key)) {
@@ -26,44 +24,17 @@ final class Crypt extends Facade {
     }
 
     /**
+     * 加密。
      * 
+     * @param string&... $data: 加密的信息字符串。
      */
-    public static function encrypt($path, &...$data) {
-        $text = file_get_contents($path);
-        $key = openssl_pkey_get_private($text);
+    public static function encrypt(&...$data) {
+        $key = self::getPrivateKey();
         foreach($data as &$value) {
             if (!openssl_private_encrypt($value, $value, $key)) {
                 trace(openssl_error_string(), 'warning');
             }
             $value = base64_encode($value);
-        }
-    }
-
-    /**
-     * 
-     */
-    public static function publicKeyEncrypt($path, ...$data) {
-        $text = file_get_contents($path);
-        $key = openssl_pkey_get_public($text);
-        foreach($data as &$value) {
-            if (!openssl_public_encrypt($value, $resault, $key)) {
-                trace(openssl_error_string(), 'warning');
-            }
-            $value = base64_encode($resault);
-        }
-    }
-
-    /**
-     * 
-     */
-    public static function publicKeyDecrypt($path, &...$data) {
-        $text = file_get_contents($path);
-        $key = openssl_pkey_get_public($text);
-        foreach($data as &$value) {
-            $raw = base64_decode($value);
-            if (!openssl_public_decrypt($raw, $value, $key)) {
-                trace(openssl_error_string(), 'warning');
-            }
         }
     }
 

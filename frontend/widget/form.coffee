@@ -30,6 +30,17 @@ $ ->
         # 禁用提交按钮
         button.attr 'disabled', true
 
+        # 密码复认
+        confirm = form.find 'input[name=confirm]'
+        if confirm.length > 0
+            password = form.find 'input[name=password]'
+            if confirm.val() != password.val()
+                form.find('.tip').each ->
+                    this.innerText = '密码不一致'
+                # 禁用提交按钮
+                button.attr 'disabled', false
+                return false
+
         # 获取公钥
         $.get this.dataset.key, (key) ->
             encryptor = new JSEncrypt()
@@ -47,20 +58,20 @@ $ ->
                 content[this.name] = crypt
 
             # 提交表单
-            $.post action, content, ((data) ->
-                console.log data
+            $.post(action, content, ((data) ->
                 if 'target' of data
                     if ('back' == data['target'])
                         window.history.back()
                     else
                         window.location.href = data['target']
-                else
-                    if 'tip' of data
-                        form.find('.tip').each ->
-                            this.innerText = data['tip']
-                    form.find('img[alt=captcha]').click()
-
+            ), 'json').always((handle, status) ->
+                console.log handle
                 # 使按钮再度生效
                 button.attr 'disabled', false
-            ), 'json'
+            ).fail((handle, status, error) ->
+                if 'tip' of handle.responseJSON
+                    form.find('.tip').each ->
+                        this.innerText = handle.responseJSON['tip']
+                form.find('img[alt=captcha]').click()
+            )
         return false;
