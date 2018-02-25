@@ -6,11 +6,9 @@
 
 {block name="mainpane"}
 <section class="mainpane">
-    <form class="ajax m-5" method="post">
+    {// 新建变量}
+    <form class="ajax m-5" method="post" action="{:pluck_link('configure/add')}" data-key="/public.key">
         <div class="input-group">
-            <span class="input-group-prepend">
-
-            </span>
             <input name="name" class="form-control col-3" placeholder="{:lang('Name')}" required/>
             <span class="input-group-prepend input-group-append">
                 <label class="input-group-text">=</label>
@@ -21,12 +19,57 @@
             </span>
         </div>
     </form>
-    <ol class="list-group">
+    {// 变量列表}
+    <h3 class="mx-5 mt-5 text-secondary">{:lang('List')}</h3>
+    <ol class="list-group list-group-flush mx-5">
         {volist name="pagination" id="variant"}
         <li class="list-group-item">
-
+            <form class="ajax input-group freeze" method="post" action="{:pluck_link('configure/amend')}" data-key="/public.key">
+                <span class="input-group-prepend input-group-append">
+                    <label class="input-group-text">{$variant.id}</label>
+                    <input type="hidden" name="id" value="{$variant.id}" required/>
+                </span>
+                <input name="name" class="form-control col-3" value="{$variant.name}" required/>
+                <span class="input-group-prepend input-group-append">
+                    <label class="input-group-text">=</label>
+                </span>
+                <input name="value" class="form-control" value="{$variant.value}" required/>
+                <span class="input-group-append">
+                    <button class="btn btn-info" type="submit">
+                        <i class="fa fa-save"></i>
+                    </button>
+                    <button class="btn btn-info freezer" type="button" data-toggle="button">
+                        <i class="fa fa-pencil-alt"></i>
+                    </button>
+                </span>
+            </form>
         </li>
         {/volist}
     </ol>
+    {// 分页索引}
+    {if $pagination->hasPages()}
+    <ul class="pagination mx-5">
+        <li class="page-item{:$pagination->currentPage() == 1 ? ' disabled' : ''}">
+            <a class="page-link" href="?page=1">
+                <i class="fa fa-angle-double-left"></i>
+            </a>
+        </li>
+        {for start="-3" end="3"}
+        {assign name="now" value=":$pagination->currentPage() + $i"/}
+        {if $pagination->lastPage() >= $now and $now > 0}
+        <li class="page-item{$i === 0 ? ' active' : ''}">
+            <a class="page-link" href="?page={$now}">
+                {$now}
+            </a>
+        </li>
+        {/if}
+        {/for}
+        <li class="page-item{:$pagination->lastPage() == $pagination->currentPage() ? ' disabled' : ''}">
+            <a class="page-link" href="?page={:$pagination->lastPage()}">
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+        </li>
+    </ul>
+    {/if}
 </section>
 {/block}

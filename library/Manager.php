@@ -5,7 +5,9 @@ use think\facade\Config;
 use pluck\facade\Path;
 
 /**
+ * 管理器
  * 
+ * 注册路由。
  */
 final class Manager {
     /**
@@ -30,6 +32,7 @@ final class Manager {
                 Route::get('administration$', 'pluck\controller\Index@administrate');
                 Route::get('configuration$', 'pluck\controller\Index@configure');
                 Route::post('configure/add$', 'pluck\controller\Reply@addVariant');
+                Route::post('configure/amend$', 'pluck\controller\Reply@amendVariant');
                 Route::post('administrator/add$', 'pluck\controller\Reply@addAdministrator');
                 Route::post('administrator/amend$', 'pluck\controller\Reply@amendAdministrator');
                 Route::group('archive', function() {

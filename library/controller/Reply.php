@@ -2,6 +2,7 @@
 
 use pluck\facade\Path;
 use pluck\facade\Crypt;
+use pluck\model\Variant;
 use pluck\model\Administrator;
 
 /**
@@ -118,9 +119,35 @@ final class Reply extends Basic {
         $post = request()->post();
         $name = $post['name'];
         $value = $post['value'];
-        Crypt::decrypt($name, $variant);
+        Crypt::decrypt($name, $value);
         try {
             $variant = new Variant;
+            $variant->save([
+                'name' => $name,
+                'value' => $value,
+            ]);
+            return ['target' => pluck_link('configuration')];
+        }
+        catch (\Excepation $e) {
+            return json([
+                'tip' => $e->getMessage()
+            ], 400);
+        }
+    }
+    
+    /**
+     * 修改变量。
+     * 
+     */
+    public function amendVariant() {
+        session('?admin') or abort(404);
+        $post = request()->post();
+        $id = $post['id'];
+        $name = $post['name'];
+        $value = $post['value'];
+        Crypt::decrypt($id, $name, $value);
+        try {
+            $variant = Variant::get(['id' => $id]);
             $variant->save([
                 'name' => $name,
                 'value' => $value,

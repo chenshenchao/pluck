@@ -12,6 +12,8 @@
     'Private' => '私有',
     'Discard' => '丢弃',
     'Priority' => '优先级',
+    'Signdate' => '注册日期',
+    'Logintime' => '登入时间',
 
     'Database' => '数据库',
     'Administrator' => '管理员',
