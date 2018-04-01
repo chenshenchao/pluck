@@ -2,7 +2,7 @@
 
 use think\facade\Route;
 use think\facade\Config;
-use pluck\facade\Path;
+use fi5e\facade\Path;
 
 /**
  * 管理器

@@ -103,6 +103,7 @@ Quill.register {
   'ui/tooltip': Tooltip
 }, true
 
+# 表单操作。
 $ ->
     $('select[data-default]').each ->
         this.value = this.dataset.default

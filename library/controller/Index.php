@@ -11,6 +11,7 @@ use pluck\model\Administrator;
  */
 final class Index extends Basic {
     /**
+     * 主页。
      * 
      */
     public function index() {
@@ -20,7 +21,7 @@ final class Index extends Basic {
     }
 
     /**
-     * 登入页面。
+     * 登入页。
      * 
      */
     public function login() {

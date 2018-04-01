@@ -1,7 +1,7 @@
 <?php namespace pluck\controller;
 
-use pluck\facade\Path;
-use pluck\facade\Crypt;
+use fi5e\facade\Path;
+use fi5e\facade\Crypt;
 use pluck\model\Variant;
 use pluck\model\Administrator;
 
@@ -23,7 +23,8 @@ final class Reply extends Basic {
         Crypt::decrypt($account, $password, $captcha);
         if(!captcha_check($captcha)) {
             return json([
-                'tip' => lang('captcha error.')
+                'tip' => lang('captcha error.'),
+                'captcha' => $captcha,
             ], 400);
         }
         $admin = Administrator::checkin($account, $password);

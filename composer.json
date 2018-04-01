@@ -21,6 +21,7 @@
     "require": {
         "php": "^7.2",
         "topthink/framework": "^5.1",
-        "topthink/think-captcha": "^2.0"
+        "topthink/think-captcha": "^2.0",
+        "chenshenchao/fi5e": "^0.0"
     }
 }

@@ -10,6 +10,8 @@ module.exports =
     output:
         filename: 'scripts/[name].min.js'
         path: path.resolve __dirname, 'asset'
+    performance:
+        hints: false
     module:
         rules: [
             {

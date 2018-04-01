@@ -1,16 +1,19 @@
 <?php namespace pluck\widget;
 
 /**
+ * 后台侧边栏
  * 
  */
 final class Sidebar {
     private $items;
 
     /**
+     * 初始化。
      * 
      */
     public function __construct() {
         $this->items = [
+            // 主要菜单
             'main' => [
                 'text' => 'Main',
                 'link' => pluck_link(),
@@ -25,6 +28,7 @@ final class Sidebar {
                     ]
                 ]
             ],
+            // 文章菜单
             'archive' => [
                 'text' => 'Archive',
                 'link' => pluck_link('archive'),
@@ -43,6 +47,7 @@ final class Sidebar {
     }
 
     /**
+     * 获取菜单项。
      * 
      */
     public function getItems() {

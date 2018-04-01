@@ -3,10 +3,12 @@
 use pluck\model\Archive;
 
 /**
+ * 文稿控制器
  * 
  */
 final class Draft extends Basic {
     /**
+     * 文稿首页。
      * 
      */
     public function index() {

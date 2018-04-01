@@ -1,8 +1,8 @@
 <?php namespace pluck\controller;
 
-use pluck\facade\Path;
-use pluck\facade\Crypt;
-use pluck\facade\Folder;
+use fi5e\facade\Path;
+use fi5e\facade\Crypt;
+use fi5e\facade\Folder;
 use pluck\model\Administrator;
 
 /**
@@ -71,7 +71,7 @@ final class Setup extends Basic {
      */
     private static function makeKey() {
         $privateKeyPath = Path::of('runtime', 'private.key');
-        $publicKeyPath = Path::of('public', 'public.key');
+        $publicKeyPath = Path::of('public', 'key');
         $key = Crypt::makePrivateKey($privateKeyPath);
         Crypt::makePublicKey($key, $publicKeyPath);
     }
@@ -153,7 +153,7 @@ final class Setup extends Basic {
     private static function uninstall($post) {
         $configurationPath = Path::of('config', 'pluck.php');
         $privateKeyPath = Path::of('runtime', 'private.key');
-        $publicKeyPath = Path::of('public', 'public.key');
+        $publicKeyPath = Path::of('public', 'key');
         unlink($configurationPath);
         unlink($privateKeyPath);
         unlink($publicKeyPath);
