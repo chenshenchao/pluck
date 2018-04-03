@@ -1,4 +1,4 @@
-<?php namespace pluck;
+<?php
 /*****************************************************************************
  * Pluck 初始化
  * 
@@ -8,12 +8,13 @@
 use think\Facade;
 use think\Loader;
 use fi5e\facade\Path;
-use Pluck;
+use pluck\facade\Manager;
+use pluck\facade\Sidebar;
 
 // 添加类别名
 Loader::addClassAlias([
-    'Pluck' => facade\Manager::class,
-    'Sidebar' => facade\Sidebar::class,
+    'Pluck' => Manager::class,
+    'Sidebar' => Sidebar::class,
 ]);
 
 // 定义路径
