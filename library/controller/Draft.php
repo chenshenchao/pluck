@@ -38,6 +38,9 @@ final class Draft extends Basic {
         ]);
     }
 
+    /**
+     * 
+     */
     public function trash() {
         $pagination = Archive::where(
             'status', 'obsolete'

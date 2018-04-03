@@ -29,12 +29,12 @@ final class Manager {
                 Route::get('login$', 'pluck\controller\Index@login');
                 Route::post('checkin$', 'pluck\controller\Reply@checkin');
                 Route::get('logout$', 'pluck\controller\Index@logout');
-                Route::get('administration$', 'pluck\controller\Index@administrate');
+                Route::get('administration$', 'pluck\controller\administrator\Index@index');
                 Route::get('configuration$', 'pluck\controller\Index@configure');
                 Route::post('configure/add$', 'pluck\controller\Reply@addVariant');
                 Route::post('configure/amend$', 'pluck\controller\Reply@amendVariant');
-                Route::post('administrator/add$', 'pluck\controller\Reply@addAdministrator');
-                Route::post('administrator/amend$', 'pluck\controller\Reply@amendAdministrator');
+                Route::post('administrator/add$', 'pluck\controller\administrator\Reply@append');
+                Route::post('administrator/amend$', 'pluck\controller\administrator\Reply@amend');
                 Route::group('archive', function() {
                     Route::get('$', 'pluck\controller\Draft@index');
                     Route::get('new$', 'pluck\controller\Draft@create');

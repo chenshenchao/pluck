@@ -7,7 +7,7 @@
 {block name="mainpane"}
 <section class="mainpane">
     {// 新建变量}
-    <form class="ajax m-5" method="post" action="{:pluck_link('configure/add')}" data-key="/public.key">
+    <form class="ajax m-5" method="post" action="{:pluck_link('configure/add')}" data-key="/key">
         <div class="input-group">
             <input name="name" class="form-control col-3" placeholder="{:lang('Name')}" required/>
             <span class="input-group-prepend input-group-append">
@@ -24,7 +24,7 @@
     <ol class="list-group list-group-flush mx-5">
         {volist name="pagination" id="variant"}
         <li class="list-group-item">
-            <form class="ajax input-group freeze" method="post" action="{:pluck_link('configure/amend')}" data-key="/public.key">
+            <form class="ajax input-group freeze" method="post" action="{:pluck_link('configure/amend')}" data-key="/key">
                 <span class="input-group-prepend input-group-append">
                     <label class="input-group-text">{$variant.id}</label>
                     <input type="hidden" name="id" value="{$variant.id}" required/>

@@ -8,7 +8,7 @@
 <section class="mainpane">
     {// 管理员信息}
     <h3 class="mx-5 mt-5 pb-2 border-bottom border-dark">{:lang('Info')}</h3>
-    <form class="ajax card bg-dark text-white freeze mx-5" method="post" action="{:pluck_link('administrator/amend')}" data-key="/public.key">
+    <form class="ajax card bg-dark text-white freeze mx-5" method="post" action="{:pluck_link('administrator/amend')}" data-key="/key">
         <div class="card-header">
             <i class="fa fa-id-badge"></i>
             <span class="badge badge-dark">{$Think.session.admin.id}</span>
@@ -57,7 +57,7 @@
     </form>
     {// 新建下级管理员}
     <h3 class="mx-5 mt-5 pb-2 border-bottom border-primary text-primary">{:lang('New')}</h3>
-    <form class="ajax mx-5" method="post" action="{:pluck_link('administrator/add')}" data-key="/public.key">
+    <form class="ajax mx-5" method="post" action="{:pluck_link('administrator/add')}" data-key="/key">
         <div class="card bg-info text-white">
             <div class="card-header">
                 <i class="fa fa-user-plus"></i>
@@ -106,7 +106,7 @@
     <ol class="list-group mx-5 mb-3 list-group-flush">
         {volist name="pagination" id="administrator" key="i"}
         <li class="list-group-item">
-            <form class="ajax freeze card" method="post" action="{:pluck_link('administrator/amend')}" data-key="/public.key">
+            <form class="ajax freeze card" method="post" action="{:pluck_link('administrator/amend')}" data-key="/key">
                 <h5 class="card-header">
                     <i class="fa fa-id-badge"></i>
                     <span class="badge badge-dark">{$administrator.id}</span>

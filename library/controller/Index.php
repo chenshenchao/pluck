@@ -52,18 +52,4 @@ final class Index extends Basic {
             'pagination' => $pagination
         ]);
     }
-
-    /**
-     * 管理员页。
-     * 
-     */
-    public function administrate() {
-        session('?admin') or abort(404);
-        $pagination = Administrator::where(
-            'priority', '>', session('admin.priority')
-        )->paginate(3);
-        return $this->fetch('index/administration', [
-            'pagination' => $pagination,
-        ]);
-    }
 }

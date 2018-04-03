@@ -1,7 +1,8 @@
 <?php namespace pluck\controller;
 
 use think\Controller;
-use think\Facade\Lang;
+use think\facade\Lang;
+use fi5e\facade\Path;
 
 /**
  * Pluck 控制器
@@ -17,9 +18,9 @@ abstract class Basic extends Controller {
     public function __construct() {
         parent::__construct();
         $this->engine([
-            'view_base' => pathof('pluck', 'template', ''),
+            'view_base' => Path::of('pluck', 'template', ''),
         ]);
         $lexicon = Lang::range().'.php';
-        Lang::load(pathof('pluck', 'language', $lexicon));
+        Lang::load(Path::of('pluck', 'language', $lexicon));
     }
 }
