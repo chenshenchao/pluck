@@ -5,11 +5,11 @@ use think\Facade;
 /**
  * 
  */
-final class Manager extends Facade {
+final class Main extends Facade {
     /**
      * 
      */
     public static function getFacadeClass() {
-        return 'pluck\Manager';
+        return 'pluck\Main';
     }
 }

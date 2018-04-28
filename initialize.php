@@ -8,17 +8,14 @@
 use think\Facade;
 use think\Loader;
 use fi5e\facade\Path;
-use pluck\facade\Manager;
+use pluck\facade\Main;
 use pluck\facade\Sidebar;
 
 // 添加类别名
 Loader::addClassAlias([
-    'Pluck' => Manager::class,
+    'Pluck' => Main::class,
     'Sidebar' => Sidebar::class,
 ]);
 
 // 定义路径
 Path::let('pluck', __DIR__);
-
-// 启用
-Pluck::manage();

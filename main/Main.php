@@ -5,22 +5,16 @@ use think\facade\Config;
 use fi5e\facade\Path;
 
 /**
- * 管理器
+ * Pluck 的主类
  * 
  * 注册路由。
  */
-final class Manager {
+final class Main {
     /**
+     * 初始化。
      * 
      */
     public function __construct() {
-
-    }
-
-    /**
-     * 
-     */
-    public function manage() {
         $path = Path::of('config', 'pluck.php');
         if (is_file($path)) {
             Config::load($path, 'pluck');
@@ -46,9 +40,9 @@ final class Manager {
                 });
             });
         } else { // 未安装情况下设置安装路由。
-            Route::get('install$', 'pluck\controller\Setup@index');
-            Route::get('install/:i$', 'pluck\controller\Setup@step', [], ['i' => '[1]']);
-            Route::post('install$', 'pluck\controller\Setup@install');
+            Route::get('install$', 'pluck\controller\setup\Index@index');
+            Route::get('install/:i$', 'pluck\controller\setup\Index@step', [], ['i' => '[1]']);
+            Route::post('install$', 'pluck\controller\setup\Reply@install');
         }
     }
 }

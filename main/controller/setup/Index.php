@@ -3,7 +3,9 @@
 use pluck\controller\Basic;
 
 /**
+ * 安装引导页面控制器
  * 
+ * 提供安装 Pluck 的引导页面。
  */
 final class Index extends Basic {
     /**
