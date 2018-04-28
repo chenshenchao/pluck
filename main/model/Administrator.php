@@ -3,6 +3,7 @@
 use think\Model;
 
 /**
+ * 管理员模型
  * 
  */
 final class Administrator extends Model {
@@ -17,6 +18,21 @@ final class Administrator extends Model {
         return self::where('account', '=', $account)
             ->where('password', 'exp', "=UNHEX(MD5('$password'))")
             ->find();
+    }
+
+    /**
+     * 
+     */
+    public static function login($account, $cipher) {
+        $admin = self::where('account', '=', $account)
+            ->where('password', 'exp', "=UNHEX(MD5('$cipher'))")
+            ->find();
+        if (is_null($admin)) return false;
+
+        $admin->logintime = date('Y-m-d h:i:s');
+        $admin->save();
+        $admin->signin('admin');
+        return true;
     }
 
     /**
