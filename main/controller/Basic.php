@@ -21,6 +21,6 @@ abstract class Basic extends Controller {
             'view_base' => Path::of('pluck', 'view', ''),
         ]);
         $lexicon = Lang::range().'.php';
-        Lang::load(Path::of('pluck', 'language', $lexicon));
+        Lang::load(Path::of('pluck', 'lang', $lexicon));
     }
 }
