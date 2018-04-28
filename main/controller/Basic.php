@@ -18,7 +18,7 @@ abstract class Basic extends Controller {
     public function __construct() {
         parent::__construct();
         $this->engine([
-            'view_base' => Path::of('pluck', 'template', ''),
+            'view_base' => Path::of('pluck', 'view', ''),
         ]);
         $lexicon = Lang::range().'.php';
         Lang::load(Path::of('pluck', 'language', $lexicon));
