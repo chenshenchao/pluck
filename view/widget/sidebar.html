@@ -1,0 +1,39 @@
+<nav class="sidebar bg-light" id="sidebar">
+    {// 菜单 开始}
+    <ul class="nav flex-column">
+        {// 一级项 开始}
+        {foreach :pluck\facade\Sidebar::getItems() as $id => $item}
+        <li class="nav-item">
+            <a class="nav-link{$item.active ? ' active' : ''}" href="{:is_array($item.link) ? url(...$item.link) : $item.link}">
+                {present name="item.icon"}
+                <i class="{$item.icon}"></i>
+                {/present}
+                <span>{:is_array($item.text) ? lang(...$item.text) : $item.text}</span>
+            </a>
+            {notempty name="$item.children"}
+            <button data-toggle="collapse" data-target="#sidebar-{$id}">
+                <i class="fa fa-caret-left"></i>
+            </button>
+            {// 二级项列 开始}
+            <div class="collapse {$item.active ? ' show' : ''}" id="sidebar-{$id}" data-parent="#sidebar">
+                <nav class="nav flex-column">
+                    {// 二级项 开始}
+                    {volist name="$item.children" id="child"}
+                    <a class="nav-link{$child.active ? ' active' : ''}" href="{:is_array($child.link) ? url(...$child.link) : $child.link}">
+                        {present name="child.icon"}
+                        <i class="{$child.icon}"></i>
+                        {/present}
+                        <span>{:is_array($child.text) ? lang(...$child.text) : $child.text}</span>
+                    </a>
+                    {/volist}
+                    {// 二级项 结束}
+                </nav>
+            </div>
+            {// 二级项列 结束}
+            {/notempty}
+        </li>
+        {/foreach}
+        {// 一级项 结束}
+    </ul>
+    {// 菜单 结束}
+</nav>

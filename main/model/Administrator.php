@@ -1,5 +1,6 @@
 <?php namespace pluck\model;
 
+use think\Db;
 use think\Model;
 
 /**
@@ -7,32 +8,69 @@ use think\Model;
  * 
  */
 final class Administrator extends Model {
+    public const SUPER_ID = 100000000;
+    public const SESSION_ID = 'admin';
+
     /**
-     * 检入。
+     * 登入。
      * 
      * @param string $account: 账户。
      * @param string $password: 密码。
      * @return mixed: 模型实例。
      */
-    public static function checkin($account, $password) {
-        return self::where('account', '=', $account)
-            ->where('password', 'exp', "=UNHEX(MD5('$password'))")
-            ->find();
+    public static function login($account, $password) {
+        $admin = self::field([
+            'id', 'nickname',
+            'UNIX_TIMESTAMP(signdate)' => 'signdate',
+            'UNIX_TIMESTAMP(logintime)' => 'logintime',
+        ])->where('account', '=', $account)
+        ->where('password', 'exp', "=UNHEX(SHA2('$password', 256))")
+        ->find();
+        if (is_null($admin)) return $admin;
+
+        self::signin($admin);
+        return $admin;
     }
 
     /**
+     * 是否登入。
      * 
      */
-    public static function login($account, $cipher) {
-        $admin = self::where('account', '=', $account)
-            ->where('password', 'exp', "=UNHEX(MD5('$cipher'))")
-            ->find();
-        if (is_null($admin)) return false;
+    public static function isSigned() {
+        return session('?'.self::SESSION_ID);
+    }
 
-        $admin->logintime = date('Y-m-d h:i:s');
+    /**
+     * 获取目前登入的管理员信息。
+     * 
+     */
+    public static function getSign() {
+        return session(self::SESSION_ID);
+    }
+
+    /**
+     * 登入。
+     * 
+     */
+    public static function signin($admin) {
+        $now = time();
+        $admin->logintime = date('Y-m-d h:i:s', $now);
         $admin->save();
-        $admin->signin('admin');
-        return true;
+        session(self::SESSION_ID, [
+            'id' => $admin->id,
+            'nickname' => $admin->name,
+            'signdate' => $admin->signdate,
+            'logintime' => $now,
+            'key' => md5(time().mt_rand(0,10000))
+        ]);
+    }
+
+    /**
+     * 登出。
+     * 
+     */
+    public static function signout() {
+        session(self::SESSION_ID, null);
     }
 
     /**
@@ -40,31 +78,15 @@ final class Administrator extends Model {
      * 
      * @param string $account: 账户。
      * @param string $password: 密码。
-     * @param string[option] $name: 名。
+     * @param string[option] $nickname: 名。
      * @return mixed: 模型实例。
      */
-    public static function add($account, $password, $name=null, $priority=7) {
+    public static function add($account, $password, $nickname=null) {
         return self::create([
-            'name' => $name ?? 'Administrator',
+            'nickname' => $nickname ?? 'Administrator',
             'account' => $account,
-            'password' => ['exp', "UNHEX(MD5('$password'))"],
+            'password' => Db::raw("UNHEX(SHA2('$password',256))"),
             'priority' => $priority,
-        ]);
-    }
-
-    /**
-     * 登录，把信息写入会话。
-     * 
-     * @param string $name: 会话名。
-     */
-    public function signin($name) {
-        session($name, [
-            'id' => $this->id,
-            'name' => $this->name,
-            'priority' => $this->priority,
-            'signdate' => $this->signdate,
-            'logintime' => $this->logintime,
-            'key' => md5(time().mt_rand(0,10000))
         ]);
     }
 }

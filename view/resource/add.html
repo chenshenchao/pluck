@@ -1,0 +1,6 @@
+{extend name="layout"/}
+
+{block name="initial"}
+{:pluck\\facade\\Sidebar::set('menu.resource.active', true)}
+{:pluck\\facade\\Sidebar::set('menu.resource.children.add.active', true)}
+{/block}

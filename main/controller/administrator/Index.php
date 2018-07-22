@@ -13,12 +13,20 @@ final class Index extends Basic {
      * 
      */
     public function index() {
-        session('?admin') or abort(404);
-        $pagination = Administrator::where(
-            'priority', '>', session('admin.priority')
-        )->paginate(3);
-        return $this->fetch('index/administration', [
-            'pagination' => $pagination,
-        ]);
+        return $this->fetch('administrator/index', []);
+    }
+
+    /**
+     * 
+     */
+    public function add() {
+        return $this->fetch('administrator/add', []);
+    }
+
+    /**
+     * 
+     */
+    public function listing() {
+        return $this->fetch('administrator/listing', []);
     }
 }

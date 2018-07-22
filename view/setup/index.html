@@ -3,22 +3,25 @@
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-        <link rel="shortcut icon" type="image/x-icon" href="{:Html::base64Image(pathof('pluck', 'logo.ico'))}"/>
+        <link rel="shortcut icon" type="image/x-icon" href="{:Html::makeDataUrl(['pluck', 'logo.ico'])}"/>
         <title>{:lang('Setup')}</title>
         {:Html::inlineStyle(pathof('pluck', 'asset', 'styles', 'setup.min.css'))}
     </head>
     <body>
-        <header>
-            <img alt="logo" src="{:Html::base64Image(pathof('pluck', 'logo.png'))}"/>
+        {// 标识横幅 开始}
+        <header class="bg-dark text-center">
+            <img class="m-3 shadow rounded" alt="logo" src="{:Html::makeDataUrl(['pluck', 'logo.png'])}"/>
         </header>
+        {// 标识横幅 结束}
         <section class="container">
+            {// 信息表格 开始}
             <table class="table mt-5">
-                <caption>{:lang('Info')}</caption>
+                <caption>{:lang('_depended_table_')}</caption>
                 <thead class="bg-dark text-white">
                     <tr>
-                        <th>{:lang('Item')}</th>
-                        <th>{:lang('Info')}</th>
-                        <th>{:lang('Status')}</th>
+                        <th>{:lang('_item_')}</th>
+                        <th>{:lang('_info_')}</th>
+                        <th>{:lang('_status_')}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,23 +35,23 @@
                     </tr>
                     {/volist}
                 </tbody>
-                <tfoot>
+                <tfoot class="bg-secondary text-white">
                     <tr>
-                        <th>{:lang('Item')}</th>
-                        <th>{:lang('Info')}</th>
-                        <th>{:lang('Status')}</th>
+                        <th>{:lang('_item_')}</th>
+                        <th>{:lang('_info_')}</th>
+                        <th>{:lang('_status_')}</th>
                     </tr>
                 </tfoot>
             </table>
+            {// 信息表格 结束}
             {if $able}
-            <a class="btn btn-primary float-right" href="/install/1">{:lang('Next')}</a>
+            <a class="btn btn-primary float-right" href="{:url('install-step', ['i' => 1])}">
+                <span>{:lang('_next_')}</span>
+            </a>
             {else/}
             <p>{:lang('Error')}</p>
             {/if}
         </section>
-        <footer>
-            
-        </footer>
         {:Html::inlineScript(pathof('pluck', 'asset', 'scripts', 'setup.min.js'))}
     </body>
 </html>

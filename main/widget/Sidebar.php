@@ -1,49 +1,20 @@
 <?php namespace pluck\widget;
 
+use think\facade\Config;
+
 /**
  * 后台侧边栏
  * 
  */
 final class Sidebar {
-    private $items;
+    use Setting;
 
     /**
      * 初始化。
      * 
      */
     public function __construct() {
-        $this->items = [
-            // 主要菜单
-            'main' => [
-                'text' => 'Main',
-                'link' => pluck_link(),
-                'children' => [
-                    'configuration' => [
-                        'text' => 'Configuration',
-                        'link' => pluck_link('configuration'),
-                    ],
-                    'administration' => [
-                        'text' => 'Administration',
-                        'link' => pluck_link('administration'),
-                    ]
-                ]
-            ],
-            // 文章菜单
-            'archive' => [
-                'text' => 'Archive',
-                'link' => pluck_link('archive'),
-                'children' => [
-                    'new' => [
-                        'text' => 'New',
-                        'link' => pluck_link('archive/new'),
-                    ],
-                    'trash' => [
-                        'text' => 'Trash',
-                        'link' => pluck_link('archive/trash'),
-                    ]
-                ]
-            ]
-        ];
+        $this->setting = Config::get('pluck.sidebar');
     }
 
     /**
@@ -51,25 +22,24 @@ final class Sidebar {
      * 
      */
     public function getItems() {
-        return $this->items;
+        self::sortItems($this->setting['menu']);
+        return $this->setting['menu'];
     }
 
     /**
-     * 使得项标记为活跃。
+     * 菜单排序。
      * 
-     * @param string $one: 一级项名。
-     * @param string[option] $two: 二级项名。
-     * @param string[option] $able: 是否有效，默认 true，通过设置 false 来使得项不活跃。
      */
-    public function activate($one, $two=null, $able=true) {
-        if (array_key_exists($one, $this->items)) {
-            $item = &$this->items[$one];
-            $item['active'] = $able;
-            if (isset($two) and array_key_exists('children', $item)) {
-                $children = &$item['children'];
-                if (array_key_exists($two, $children)) {
-                    $children[$two]['active'] = $able;
-                }
+    private static function sortItems(&$target) {
+        uasort($target, function($a, $b) {
+            $ao = $a['order'] ?? 0;
+            $bo = $b['order'] ?? 0;
+            if ($ao === $bo) return 0;
+            return $ao > $bo ? -1 : 1;
+        });
+        foreach ($target as $key => &$value) {
+            if (isset($value['children'])) {
+                self::sortItems($value['children']);
             }
         }
     }

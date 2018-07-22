@@ -17,14 +17,3 @@ if (!function_exists('pathof')) {
         return Path::of($name, ...$tail);
     }
 }
-
-/**
- * 生成后台链接。
- * 
- */
-if (!function_exists('pluck_link')) {
-    function pluck_link($tail=null) {
-        $head = '/'.config('pluck.link');
-        return isset($tail) ? "$head/$tail" : $head;
-    }
-}

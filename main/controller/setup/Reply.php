@@ -1,6 +1,11 @@
 <?php namespace pluck\controller\setup;
 
+use think\Db;
+use fi5e\facade\Sql;
+use fi5e\facade\Path;
+use fi5e\facade\Folder;
 use pluck\controller\Basic;
+use pluck\model\Administrator;
 
 /**
  * 安装控制器
@@ -16,8 +21,10 @@ final class Reply extends Basic {
         $post = request()->post();
         try {
             self::configure($post);
-            self::makeKey();
             self::publishFrontend();
+            $routesSource = Path::of('pluck', 'asset', 'route');
+            $routesTarget = Path::of('route');
+            Folder::copy($routesSource, $routesTarget);
             self::initializeDatabase($post);
             return [
                 'code' => 0,
@@ -33,26 +40,16 @@ final class Reply extends Basic {
     }
 
     /**
-     * 生成密钥对。
-     * 
-     */
-    private static function makeKey() {
-        $privateKeyPath = Path::of('runtime', 'private.key');
-        $publicKeyPath = Path::of('public', 'key');
-        $key = Crypt::makePrivateKey($privateKeyPath);
-        Crypt::makePublicKey($key, $publicKeyPath);
-    }
-
-    /**
      * 发布前端。
      * 
      */
     private static function publishFrontend() {
         $scriptsSource = Path::of('pluck', 'asset', 'scripts');
         $scriptsTarget = Path::of('public', 'scripts');
+        Folder::copy($scriptsSource, $scriptsTarget);
+
         $stylesSource = Path::of('pluck', 'asset', 'styles');
         $stylesTarget = Path::of('public', 'styles');
-        Folder::copy($scriptsSource, $scriptsTarget);
         Folder::copy($stylesSource, $stylesTarget);
     }
 
@@ -84,16 +81,15 @@ final class Reply extends Basic {
         $file = fopen(Path::of('config', 'database.php'), 'w');
         fputs($file, $configuration);
         fclose($file);
-        \Sql::execute(Path::of('pluck', 'asset', 'create.sql'), [
+        Sql::execute(Path::of('pluck', 'asset', 'mysql', 'create.sql'), [
             '__PREFIX__' => $post['prefix'],
         ]);
         $password = $post['cipher'];
         Administrator::create([
             'id' => 100000000,
-            'name' => 'Administrator',
             'account' => $post['account'],
-            'password' => ['exp', "UNHEX(MD5('$password'))"],
-            'priority' => 0,
+            'password' => Db::raw("UNHEX(SHA2('$password',256))"),
+            'nickname' => 'Administrator',
         ]);
     }
 
@@ -120,11 +116,11 @@ final class Reply extends Basic {
     private static function uninstall($post) {
         $configurationPath = Path::of('config', 'pluck.php');
         $privateKeyPath = Path::of('runtime', 'private.key');
-        $publicKeyPath = Path::of('public', 'key');
+        $publicKeyPath = Path::of('public', 'public.key');
         unlink($configurationPath);
         unlink($privateKeyPath);
         unlink($publicKeyPath);
-        \Sql::execute(Path::of('pluck', 'asset', 'delete.sql'), [
+        Sql::execute(Path::of('pluck', 'asset', 'mysql', 'delete.sql'), [
             '__PREFIX__' => $post['prefix'],
         ]);
     }

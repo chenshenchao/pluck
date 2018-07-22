@@ -3,6 +3,7 @@
 use think\Controller;
 use think\facade\Lang;
 use fi5e\facade\Path;
+use pluck\One;
 
 /**
  * Pluck 控制器
@@ -19,6 +20,7 @@ abstract class Basic extends Controller {
         parent::__construct();
         $this->engine([
             'view_base' => Path::of('pluck', 'view', ''),
+            'taglib_pre_load' => One::class,
         ]);
         $lexicon = Lang::range().'.php';
         Lang::load(Path::of('pluck', 'lang', $lexicon));

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+        <link rel="shortcut icon" type="image/x-icon" href="{:Html::makeDataUrl(['pluck', 'logo.ico'])}"/>
+        <link rel="stylesheet"  charset="utf-8" href="/styles/pluck.min.css"/>
+        <title>{:lang($title ?? 'Pluck')}</title>
+    </head>
+    <body>
+        {// 标识横幅 开始}
+        <header class="text-center bg-dark">
+            <img class="shadow my-3" alt="logo" src="{:Html::makeDataUrl(['pluck', 'logo.png'])}"/>
+        </header>
+        {// 标识横幅 结束}
+        <section class="container">
+            <div class="row mt-5">
+                {// 登入表单 开始}
+                <form class="ajax col-md-6 offset-md-5 border shadow" method="POST" action="{:url('pluck-action', ['action' => 'login'])}" data-key="/proof.pem">
+                    <h5 class="my-3 text-center">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>{:lang('_login_')}</span>
+                    </h5>
+                    <div class="form-group row">
+                        <label class="col-form-label col-3">
+                            <i class="fas fa-user-circle"></i>
+                            <span>{:lang('_username_')}</span>
+                        </label>
+                        <div class="col-9">
+                            <input class="form-control" name="username" type="text" required="required"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-3">
+                            <i class="fa fa-key"></i>
+                            <span>{:lang('_password_')}</span>
+                        </label>
+                        <div class="col-9">
+                            <input class="form-control" name="password" type="password" required="required"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-3">
+                            <i class="fas fa-font"></i>
+                            <span>{:lang('_captcha_')}</span>
+                        </label>
+                        <div class="col-4">
+                            <img class="mw-100" alt="captcha" src="{:captcha_src()}"/>
+                        </div>
+                        <div class="col-5">
+                            <input class="form-control" name="captcha" type="text" required="required"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-3">
+                            <i class="fas fa-info-circle"></i>
+                            <span>{:lang('_tip_')}</span>
+                        </label>
+                        <div class="col-9">
+                            <p class="tip"></p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-3 offset-9">
+                            <button class="btn btn-outline-primary w-100" type="submit">
+                                <i class=""></i>
+                                <span>{:lang('_submit_')}</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                {// 登入表单 结束}
+            </div>
+        </section>
+        <script  charset="utf-8" src="/scripts/pluck.min.js"></script>
+    </body>
+</html>

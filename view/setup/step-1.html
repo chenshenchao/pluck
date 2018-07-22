@@ -2,55 +2,62 @@
 
 {block name="content"}
 <section class="container">
+    {// 初始化设置表单 开始}
     <form class="ajax mt-3" method="post" action="/install">
-        <label class="text-dark font-weight-bold row">{:lang('Database')}</label>
+        <label class="border-bottom pb-2 font-weight-bold row">{:lang('_database_')}</label>
         <div class="form-group row">
-            <label class="col-2 col-form-label">{:lang('Name')}</label>
-            <input name="database" type="text" class="form-control col-5" placeholder="{:lang('Name')}" required/>
-            <label class="col-2 col-form-label">{:lang('Type')}</label>
-            <input name="type" type="text" class="form-control col-3" placeholder="{:lang('Type')}" value="mysql" required/>
+            <label class="col-2 col-form-label">{:lang('_name_')}</label>
+            <input name="database" type="text" class="form-control col-5" required="required"/>
+            <label class="col-2 col-form-label">{:lang('_type_')}</label>
+            <input name="type" type="text" class="form-control col-3" value="mysql" required="required"/>
         </div>
         <div class="form-group row">
-            <label class="col-2 col-form-label">{:lang('Host')}</label>
-            <input name="hostname" type="text" class="form-control col-5" placeholder="{:lang('Host')}" value="127.0.0.1" required/>
-            <label class="col-2 col-form-label">{:lang('Port')}</label>
-            <input name="hostport" type="text" class="form-control col-3" placeholder="{:lang('Port')}" value="3306" required/>
+            <label class="col-2 col-form-label">{:lang('_host_')}</label>
+            <input name="hostname" type="text" class="form-control col-5" value="127.0.0.1" required="required"/>
+            <label class="col-2 col-form-label">{:lang('_port_')}</label>
+            <input name="hostport" type="text" class="form-control col-3" value="3306" required="required"/>
         </div>
         <div class="form-group row">
-            <label class="col-2 col-form-label">{:lang('Username')}</label>
-            <input name="username" type="text" class="form-control col-4" placeholder="{:lang('Username')}" required/>
-            <label class="col-2 col-form-label">{:lang('Password')}</label>
-            <input name="password" type="text" class="form-control col-4" placeholder="{:lang('Password')}" required/>
+            <label class="col-2 col-form-label">{:lang('_username_')}</label>
+            <input name="username" type="text" class="form-control col-4" required="required"/>
+            <label class="col-2 col-form-label">{:lang('_password_')}</label>
+            <input name="password" type="text" class="form-control col-4" required="required"/>
         </div>
         <div class="form-group row">
-            <label class="col-2 col-form-label">{:lang('Prefix')}</label>
-            <input name="prefix" type="text" class="form-control col-4" placeholder="{:lang('Prefix')}" required/>
-            <label class="col-2 col-form-label">{:lang('Charset')}</label>
-            <input name="charset" type="text" class="form-control col-4" placeholder="{:lang('Charset')}" value="utf8" required/>
+            <label class="col-2 col-form-label">{:lang('_prefix_')}</label>
+            <input name="prefix" type="text" class="form-control col-4" required="required"/>
+            <label class="col-2 col-form-label">{:lang('_charset_')}</label>
+            <input name="charset" type="text" class="form-control col-4" value="utf8" required="required"/>
         </div>
-        <label class="text-dark font-weight-bold row">{:lang('Administrator')}</label>
+        <label class="border-bottom pb-2 font-weight-bold row">{:lang('_administrator_')}</label>
         <div class="form-group row">
-            <label class="col-2 col-form-label mr-auto">{:lang('Link')}</label>
-            <input name="link" type="text" class="form-control col" placeholder="{:lang('Link')}" required/>
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label">{:lang('Account')}</label>
-            <input name="account" type="text" class="form-control col" placeholder="{:lang('Account')}" required/>
+            <label class="col-2 col-form-label mr-auto">{:lang('_link_')}</label>
+            <input name="link" type="text" class="form-control col" required="required"/>
         </div>
         <div class="form-group row">
-            <label class="col-2 col-form-label">{:lang('Password')}</label>
-            <input name="cipher" type="password" class="form-control col" placeholder="{:lang('Password')}" required/>
+            <label class="col-2 col-form-label">{:lang('_account_')}</label>
+            <input name="account" type="text" class="form-control col" required="required"/>
         </div>
         <div class="form-group row">
-            <label class="col-2 col-form-label">{:lang('Confirm')}</label>
-            <input name="confirm" type="password" class="form-control col" placeholder="{:lang('Confirm')}" required/>
+            <label class="col-2 col-form-label">{:lang('_password_')}</label>
+            <input name="cipher" type="password" class="form-control col" required="required"/>
         </div>
         <div class="form-group row">
-            <label class="col-2 col-form-label">{:lang('Tip')}</label>
-            <span class="col-8 form-text tip"></span>
-            <button type="submit" class="btn btn-primary col-2">{:lang('Submit')}</button>
+            <label class="col-2 col-form-label">{:lang('_confirm_')}</label>
+            <input name="confirm-cipher" type="password" class="form-control col" required="required"/>
+        </div>
+        <label class="border-bottom pb-2 font-weight-bold row">{:lang('_other_')}</label>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">{:lang('_tip_')}</label>
+            <span class="col-10 form-control-plain tip"></span>
+        </div>
+        <div class="form-group row">
+            <button type="submit" class="btn btn-primary col-2 offset-10">
+                <span>{:lang('_submit_')}</span>
+            </button>
         </div>
     </form>
+    {// 初始化设置表单 结束}
     <div class="d-none">
         <a href="/">{:lang('Home')}</a>
     </div>

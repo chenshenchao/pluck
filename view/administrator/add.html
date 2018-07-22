@@ -1,0 +1,6 @@
+{extend name="layout"/}
+
+{block name="initial"}
+{:pluck\\facade\\Sidebar::set('menu.administrator.active', true)}
+{:pluck\\facade\\Sidebar::set('menu.administrator.children.add.active', true)}
+{/block}

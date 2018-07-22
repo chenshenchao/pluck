@@ -1,7 +1,5 @@
 <?php namespace pluck\controller;
 
-use pluck\facade\Sidebar;
-use pluck\model\Variant;
 use pluck\model\Administrator;
 
 /**
@@ -15,9 +13,8 @@ final class Index extends Basic {
      * 
      */
     public function index() {
-        session('?admin') or abort(404);
-        $all = Administrator::all();
-        return $this->fetch('index/index', []);
+        Administrator::isSigned() or abort(404);
+        return $this->fetch('index/index');
     }
 
     /**
@@ -25,8 +22,8 @@ final class Index extends Basic {
      * 
      */
     public function login() {
-        session('?admin') and abort(404);
-        return $this->fetch('login');
+        Administrator::isSigned() and abort(404);
+        return $this->fetch('index/login');
     }
 
     /**
@@ -34,22 +31,8 @@ final class Index extends Basic {
      * 
      */
     public function logout() {
-        session('?admin') or abort(404);
-        session('admin', null);
-        return $this->redirect('/');
-    }
-
-    /**
-     * 管理页。
-     * 
-     */
-    public function configure() {
-        session('?admin') or abort(404);
-        $pagination = Variant::where([
-
-        ])->paginate(7);
-        return $this->fetch('index/configuration', [
-            'pagination' => $pagination
-        ]);
+        Administrator::isSigned() or abort(404);
+        Administrator::signout();
+        return $this->redirect('pluck-page', ['page' => 'login']);
     }
 }

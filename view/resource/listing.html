@@ -1,0 +1,32 @@
+{extend name="layout"/}
+
+{block name="initial"}
+{:pluck\\facade\\Sidebar::set('menu.resource.active', true)}
+{:pluck\\facade\\Sidebar::set('menu.resource.children.listing.active', true)}
+{/block}
+
+{block name="mainpane"}
+<div class="mainpane">
+    <ul class="list-group">
+        {volist name="files" id="file"}
+        <li class="list-group-item">
+            {switch $file.type}
+                {case folder}
+                <a href="?locator={$file.locator}">
+                    <i class="fas fa-folder text-primary"></i>
+                </a>
+                {/case}
+                {case file}
+                <i class="fas fa-file"></i>
+                {/case}
+                {case image}
+                <i class="fas fa-image text-info"></i>
+                {/case}
+            {/switch}
+            {$file.name}
+            {$file.mime}
+        </li>
+        {/volist}
+    </ul>
+</div>
+{/block}
