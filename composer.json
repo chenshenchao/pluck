@@ -1,5 +1,5 @@
 {
-    "version": "0.1.0",
+    "version": "0.2.0",
     "name": "chenshenchao/pluck",
     "description": "Yet a PHP Content Management Framework of the ThinkPHP.",
     "type": "library",
@@ -15,7 +15,6 @@
             "pluck\\": "main"
         },
         "files": [
-            "function.php",
             "initialize.php"
         ]
     },
