@@ -1,8 +1,8 @@
 {
-    "version": "0.2.0",
+    "version": "0.5.1",
     "name": "chenshenchao/pluck",
-    "description": "Yet a PHP Content Management Framework of the ThinkPHP.",
-    "type": "library",
+    "description": "基于 ThinkPHP 5.1 内容管理系统。",
+    "type": "project",
     "license": "Apache-2.0",
     "authors": [
         {
@@ -12,11 +12,16 @@
     ],
     "autoload": {
         "psr-4": {
-            "pluck\\": "main"
-        },
-        "files": [
-            "initialize.php"
-        ]
+            "app\\": "website/application"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "main\\": "console/main"
+        }
+    },
+    "extra": {
+        "think-path": "website/thinkphp"
     },
     "require": {
         "php": ">=7.2",

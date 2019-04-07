@@ -1,5 +1,5 @@
 module.exports = {
-    plugins: [
-        require('postcss-cssnext')
-    ]
-};
+  plugins: {
+    autoprefixer: {}
+  }
+}

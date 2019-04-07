@@ -1,0 +1,4 @@
+/thinkphp/
+/.env
+/public/pluck
+/application/index/view/index/pluck.html

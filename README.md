@@ -2,7 +2,7 @@
 
 ![Logo](logo.png)
 
-Pluck 是一个基于 ThinkPHP 的内容管理框架。
+Pluck 是一个基于 ThinkPHP 的内容管理系统。
 
 # 依赖
 - php ^7.2
