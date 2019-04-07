@@ -1,10 +1,11 @@
 const path = require('path');
+const pluck = require('./pluck.config.js');
 
 const indexViewPath = path.join(__dirname, 'website', 'application', 'index', 'view', 'index');
 
 module.exports = {
-    publicPath: 'production' == process.env.NODE_ENV ? '/pluck' : '/',
-    outputDir: './website/public/pluck',
+    publicPath: 'production' == process.env.NODE_ENV ? `/${pluck.name}` : '/',
+    outputDir: `./website/public/${pluck.name}`,
 
     /**
      * Webpack 设置。
