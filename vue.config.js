@@ -2,9 +2,10 @@ const path = require('path');
 const pluck = require('./pluck.config.js');
 
 const indexViewPath = path.join(__dirname, 'website', 'application', 'index', 'view', 'index');
+const producing = 'production' == process.env.NODE_ENV;
 
 module.exports = {
-    publicPath: 'production' == process.env.NODE_ENV ? `/${pluck.name}` : '/',
+    publicPath: producing ? `/${pluck.name}` : '/',
     outputDir: `./website/public/${pluck.name}`,
 
     /**
@@ -22,14 +23,16 @@ module.exports = {
      */
     pages: {
         pluck: {
-            entry: 'backstage/main.js',
-            template: 'backstage/index.html',
-            filename: `${indexViewPath}/pluck.html`,
+            entry: path.join(__dirname, 'backstage', 'main.js'),
+            template: path.join(__dirname, 'backstage', 'index.html'),
+            filename: producing ? `${indexViewPath}/pluck.html` : 'pluck.html',
+            title: 'pluck',
         },
         mdshop: {
-            entry: 'mdshop/main.js',
-            template: 'mdshop/index.html',
-            filename: `${indexViewPath}/mdshop.html`,
+            entry: path.join(__dirname, 'mdshop', 'main.js'),
+            template: path.join(__dirname, 'mdshop', 'index.html'),
+            filename: producing ? `${indexViewPath}/mdshop.html` : 'mdshop.html',
+            title: 'mdshop',
         },
     },
     

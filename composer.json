@@ -19,6 +19,9 @@
             "main\\": "console/main"
         }
     },
+    "config": {
+        "vendor-dir": "website/vendor"
+    },
     "extra": {
         "think-path": "website/thinkphp"
     },
