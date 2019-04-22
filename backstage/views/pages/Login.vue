@@ -1,12 +1,13 @@
 <template>
     <el-container class="login-page">
-        <el-header>
-
-        </el-header>
+        <el-header></el-header>
         <el-main>
             <el-row>
-                <el-col :span="6">&nbsp;</el-col>
-                <el-col :span="10">
+                <el-col
+                    :xs="{span: 18, offset: 3}"
+                    :sm="{span: 10, offset: 6}"
+                    :md="{span: 6, offset: 10}"
+                >
                     <el-form :size="size" label-width="100px">
                         <el-form-item label="用户名">
                             <el-input/>
@@ -27,27 +28,25 @@
                         </el-form-item>
                     </el-form>
                 </el-col>
-                <el-col :span="6">&nbsp;</el-col>
             </el-row>
         </el-main>
     </el-container>
 </template>
 
 <script>
-import Captcha from '@b/views/widgets/Captcha.vue';
+import Captcha from "@b/views/widgets/Captcha.vue";
 
 export default {
     components: {
-        Captcha,
+        Captcha
     },
     data() {
         return {
-            size: 'mini',
+            size: "mini"
         };
-    },
+    }
 };
 </script>
 
 <style lang="scss" scoped>
-
 </style>
