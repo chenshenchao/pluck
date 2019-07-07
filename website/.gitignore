@@ -1,6 +1,4 @@
-/thinkphp/
 /vendor/
+/public/*/
+/*lock*
 /.env
-/public/pluck
-/application/index/view/index/pluck.html
-/application/index/view/index/mdshop.html

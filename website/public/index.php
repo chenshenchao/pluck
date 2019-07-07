@@ -1,21 +1,12 @@
-<?php
-// +----------------------------------------------------------------------
-// | ThinkPHP [ WE CAN DO IT JUST THINK ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2006-2018 http://thinkphp.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: liu21st <liu21st@gmail.com>
-// +----------------------------------------------------------------------
+<?php namespace think;
 
-// [ 应用入口文件 ]
-namespace think;
+require __DIR__ . '/../vendor/autoload.php';
 
-// 加载基础文件
-require __DIR__ . '/../thinkphp/base.php';
+// 执行HTTP应用并响应
+$http = (new App())->http;
 
-// 支持事先使用静态方法设置Request对象和Config对象
+$response = $http->run();
 
-// 执行应用并响应
-Container::get('app')->run()->send();
+$response->send();
+
+$http->end($response);
