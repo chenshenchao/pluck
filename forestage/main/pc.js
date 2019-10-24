@@ -1,1 +1,0 @@
-import './style/normalization.scss';
