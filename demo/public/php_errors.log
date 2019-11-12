@@ -1,0 +1,9 @@
+[13-Nov-2019 01:02:16 Asia/Shanghai] PHP Fatal error:  Uncaught InvalidArgumentException: Unable to resolve NULL driver for [think\Log]. in H:\pluck\vendor\topthink\framework\src\think\Manager.php:50
+Stack trace:
+#0 H:\pluck\vendor\topthink\framework\src\think\Log.php(93): think\Manager->driver(NULL)
+#1 H:\pluck\vendor\topthink\framework\src\think\Log.php(189): think\Log->channel(NULL)
+#2 H:\pluck\vendor\topthink\framework\src\think\exception\Handle.php(78): think\Log->record('[0]Unable to re...', 'error')
+#3 H:\pluck\vendor\topthink\framework\src\think\initializer\Error.php(53): think\exception\Handle->report(Object(InvalidArgumentException))
+#4 [internal function]: think\initializer\Error->appException(Object(InvalidArgumentException))
+#5 {main}
+  thrown in H:\pluck\vendor\topthink\framework\src\think\Manager.php on line 50

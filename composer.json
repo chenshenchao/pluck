@@ -1,0 +1,27 @@
+{
+    "name": "chenshenchao/pluck",
+    "description": "yet a cms with thinkphp 6 and vue 3.",
+    "type": "library",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "chenshenchao",
+            "email": "chenshenchao@outlook.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "pluck\\": "main"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "app\\": "demo/app"
+        }
+    },
+    "require": {
+        "topthink/framework": "^6.0",
+        "topthink/think-migration": "^3.0",
+        "topthink/think-captcha": "^3.0"
+    }
+}

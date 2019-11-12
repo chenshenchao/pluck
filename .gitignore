@@ -1,2 +1,7 @@
 /.*/
-
+/node_modules/
+/vendor/
+/view/dist/
+/*.lock
+/.env.*
+/.npmrc
