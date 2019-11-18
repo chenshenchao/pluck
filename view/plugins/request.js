@@ -103,7 +103,7 @@ class AjaxRequester {
      * @param {} config 
      */
     request(config) {
-        return this.request(config);
+        return this.axios.request(config);
     }
 }
 

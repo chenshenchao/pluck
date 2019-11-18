@@ -11,7 +11,7 @@ proxy[`^/${process.env.PROXY_API_PREFIX || 'api'}`] = {
 
 module.exports = {
     publicPath: 'production' == process.env.NODE_ENV ? `/${name}` : '/',
-    outputDir: path.resolve(__dirname, 'view', 'dist', name),
+    outputDir: path.resolve(__dirname, 'view', 'products'),
     indexPath: 'index.html',
     configureWebpack: {
         entry: '@/main.js',
@@ -24,12 +24,12 @@ module.exports = {
             new HtmlWebpackPlugin({
                 filename: 'index.html',
                 template: path.resolve(__dirname, 'view', 'index.html')
-            })
+            }),
         ]
     },
     devServer: {
         port: 8080,
         proxy: proxy,
-        contentBase: path.resolve(__dirname, 'demo', 'public'),
+        contentBase: path.resolve(__dirname, 'view', 'assets'),
     },
 };

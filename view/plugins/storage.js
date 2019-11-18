@@ -9,7 +9,7 @@ class BaseStorage {
      */
     constructor(storage, duration) {
         this.storage = storage;
-        this.duration = duration;
+        this.duration = duration || Infinity;
     }
 
     /**
@@ -18,7 +18,7 @@ class BaseStorage {
      * @param {*} name 键名
      * @param {*} defaultValue 默认值
      */
-    get(name, defaultValue) {
+    load(name, defaultValue) {
         let now = new Date().getTime();
         let text = this.storage.getItem(name);
         if (!text) {
@@ -40,7 +40,7 @@ class BaseStorage {
      * @param {*} value 值
      * @param {*} duration 持续时间
      */
-    set(name, value, duration) {
+    save(name, value, duration) {
         let now = new Date().getTime();
         let data = {
             value: value,
@@ -55,14 +55,9 @@ class BaseStorage {
      * @param {*} name 键名
      */
     drop(name) {
-        this.storage.removeItem(name);
-    }
-
-    /**
-     * 清除所有信息。
-     * 
-     */
-    clear() {
+        if (name) {
+            this.storage.removeItem(name);
+        }
         this.storage.clear();
     }
 }
@@ -78,7 +73,7 @@ class CacheStorage extends BaseStorage {
      * @param {*} duration 持续时间
      */
     constructor(duration) {
-        super(localStorage, duration || (60 * 60 * 1000));
+        super(localStorage, duration);
     }
 }
 
@@ -93,7 +88,7 @@ class SessionStorage extends BaseStorage {
      * @param {*} duration 持续时间
      */
     constructor(duration) {
-        super(sessionStorage, duration || Infinity);
+        super(sessionStorage, duration);
     }
 }
 
