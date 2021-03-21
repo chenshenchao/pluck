@@ -1,8 +1,8 @@
 {
     "name": "chenshenchao/pluck",
-    "description": "yet a cms with thinkphp 6 and vue 3.",
+    "description": "yet a php template library.",
     "type": "library",
-    "license": "Apache-2.0",
+    "license": "MIT",
     "authors": [
         {
             "name": "chenshenchao",
@@ -14,13 +14,5 @@
             "pluck\\": "main"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "app\\": "demo/app"
-        }
-    },
-    "require": {
-        "topthink/framework": "^6.0",
-        "topthink/think-captcha": "^3.0"
-    }
+    "require": {}
 }
